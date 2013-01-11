@@ -1,0 +1,62 @@
+#ifndef class_sdlgauntcraft_levelscroller
+#define class_sdlgauntcraft_levelscroller
+
+#include <cmath>
+#include <string>
+#include <vector>
+
+#include "CoreTypes.h"
+#include "ILevelScroller.h"
+#include "SDL.h"
+#include "SDL_gfxPrimitives.h"
+#include "SpriteSheet.h"
+
+typedef struct {
+	CORE_INT age;
+	CORE_INT x;
+	CORE_INT y;
+} ScrollerTile;
+
+#define RESET 0
+#define LEFT 1
+#define RIGHT 2
+#define TOP 4
+#define BOTTOM 8
+
+#define SCROLLERDEBUG 0
+
+#define LOADDING_PADDING 2
+
+class LevelScroller : public ILevelScroller{
+private:
+	void drawBorder(SDL_Surface *);
+	void generateScrollerTiles();
+	void displayScrollerTiles(SDL_Surface *);
+	void updateScrollerTiles(CORE_BITMASK directionalBitmask);
+
+	/* /// DEBUG TEST FUNCTIONS */
+	/* /// */
+
+	CORE_INT r_border, g_border, b_border;
+	CORE_INT tileSize;
+	SDL_Rect visibleExtents;
+	SpriteSheet * levelSheet;
+
+	// Variables for scrolling method
+	std::vector < std::vector <ScrollerTile> > scrollerMap;
+	CORE_INT hTilesNeeded, vTilesNeeded;
+	CORE_FLOAT hShift, vShift;
+	CORE_BITMASK updateRequired;
+
+public:
+	LevelScroller(SpriteSheet *);
+	virtual ~LevelScroller();
+
+	void setSpriteSheet(SpriteSheet *);
+
+	virtual void pan(CORE_FLOAT x, CORE_FLOAT y);
+	virtual void show(SDL_Surface *);
+	virtual void setVisibleExtents(SDL_Rect);
+};
+
+#endif //class_sdlgauntcraft_levelscroller
