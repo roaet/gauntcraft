@@ -78,13 +78,13 @@ CORE_STATUS Engine::init(void) {
 
 	level = new LevelScroller(sprites);
 
-	if( true ) {
-		SDL_Rect extents = {0, 0, screenWidth, screenHeight};
-		level->setVisibleExtents(extents);
-	} else {
+#if SCROLLERDEBUG == 1
 		SDL_Rect extents = {centerX- 80, centerY- 80, 160, 160};
 		level->setVisibleExtents(extents);
-	}
+#else
+		SDL_Rect extents = {0, 0, screenWidth, screenHeight};
+		level->setVisibleExtents(extents);
+#endif
 
 	character->moveTo(centerX, centerY);
 	
@@ -166,9 +166,9 @@ SDL_Surface* Engine::loadImage(std::string filename) {
 	loadedImage = IMG_Load(filename.c_str());
 
 	if(loadedImage) {
-		optimizedImage = loadedImage;
+		optimizedImage = SDL_DisplayFormatAlpha(loadedImage);
 
-		//SDL_FreeSurface(loadedImage);
+		SDL_FreeSurface(loadedImage);
 	} else {
 		fprintf(logfile, "Error loading image %s", filename.c_str());
 	}

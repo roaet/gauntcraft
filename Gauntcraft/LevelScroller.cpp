@@ -5,7 +5,9 @@ LevelScroller::LevelScroller(SpriteSheet * sheet) {
 	levelSheet = sheet;
 	tileSize = 32;
 	hShift = vShift = 0;
+	columnsToRefresh = rowsToRefresh = 0;
 	updateRequired = RESET;
+	debugOutput.start();
 }
 
 LevelScroller::~LevelScroller() {
@@ -14,8 +16,8 @@ LevelScroller::~LevelScroller() {
 
 
 void LevelScroller::generateScrollerTiles() {
-	hTilesNeeded = visibleExtents.w / tileSize + 2 * LOADDING_PADDING;
-	vTilesNeeded = visibleExtents.h / tileSize + 2 * LOADDING_PADDING;
+	hTilesNeeded = visibleExtents.w / tileSize + 2 * LOADING_PADDING;
+	vTilesNeeded = visibleExtents.h / tileSize + 2 * LOADING_PADDING;
 
 	scrollerMap.resize(vTilesNeeded);
 	for(CORE_INT i = 0; i < vTilesNeeded; i++)
@@ -38,8 +40,8 @@ void LevelScroller::displayScrollerTiles(SDL_Surface * dest) {
 	for(CORE_INT i = 0; i < vTilesNeeded; i++) {
 		for(CORE_INT j = 0; j < hTilesNeeded; j++) {
 			ScrollerTile tile = scrollerMap[i][j];
-			CORE_FLOAT xPos = tile.x + visibleExtents.x - LOADDING_PADDING * tileSize;
-			CORE_FLOAT yPos = tile.y + visibleExtents.y - LOADDING_PADDING * tileSize;
+			CORE_FLOAT xPos = tile.x + visibleExtents.x - LOADING_PADDING * tileSize;
+			CORE_FLOAT yPos = tile.y + visibleExtents.y - LOADING_PADDING * tileSize;
 			xPos += hShift;
 			yPos += vShift;
 #if SCROLLERDEBUG == 1
@@ -74,12 +76,11 @@ void LevelScroller::displayScrollerTiles(SDL_Surface * dest) {
 					      yPos + tileSize,
 					      255, 0, 0, 255);
 #else
-			
-			levelSheet->blitSprite("dirt", xPos, yPos,  dest);
+			levelSheet->blitSprite("dirt", xPos, yPos,  dest); // fp -> int error
 			if(tile.age == 1) {
-				levelSheet->blitSprite("blastdirt", xPos, yPos, dest);
+				levelSheet->blitSprite("blastdirt", xPos, yPos, dest);  // fp -> int error
 			} else if(tile.age < 5) {
-				levelSheet->blitSprite("darkdirt", xPos, yPos, dest);
+				levelSheet->blitSprite("darkdirt", xPos, yPos, dest);  // fp -> int error
 			}
 #endif
 
@@ -105,28 +106,38 @@ void LevelScroller::updateScrollerTiles(CORE_BITMASK directionalBitmask) {
 		for(CORE_INT i = 0; i < vTilesNeeded; i++) 
 			for(CORE_INT j = hTilesNeeded - 1; j > 0; j--) 
 				scrollerMap[i][j].age = scrollerMap[i][j-1].age;
-		// resetting the LEFT column
-		for(CORE_INT i = 0; i < vTilesNeeded; i++) scrollerMap[i][0].age = 0;
+		// resetting the columnsToRefresh LEFT columns
+		for(CORE_INT i = 0; i < vTilesNeeded; i++) 
+			for(CORE_INT j = 0; j < columnsToRefresh; j++)
+				scrollerMap[i][j].age = 0;
+
 	} else if(updateRequired & RIGHT) { // need to push all tiles LEFT and generate new ones on RIGHT
 		for(CORE_INT i = 0; i < vTilesNeeded; i++) 
 			for(CORE_INT j = 0; j < hTilesNeeded - 1; j++)
 				scrollerMap[i][j].age = scrollerMap[i][j+1].age;
-		// resetting the RIGHT column
-		for(CORE_INT i = 0; i < vTilesNeeded; i++) scrollerMap[i][hTilesNeeded-1].age = 0;
+		// resetting the columnsToRefresh RIGHT columns
+		for(CORE_INT i = 0; i < vTilesNeeded; i++) 
+			for(CORE_INT j = hTilesNeeded - 1; j > hTilesNeeded - columnsToRefresh - 1; j--)
+				scrollerMap[i][j].age = 0;
 	}
 
 	if(updateRequired & TOP) { // need to push all tiles DOWN and generate new ones on TOP
 		for(CORE_INT j = 0; j < hTilesNeeded; j++) 
 			for(CORE_INT i = vTilesNeeded - 1; i > 0; i--) 
 				scrollerMap[i][j].age = scrollerMap[i-1][j].age;
-		// resetting the TOP column
-		for(CORE_INT j = 0; j < hTilesNeeded; j++) scrollerMap[0][j].age = 0;
+		// resetting the rowsToRefresh TOP columns
+		for(CORE_INT i = 0; i < rowsToRefresh; i++) 
+			for(CORE_INT j = 0; j < hTilesNeeded; j++) 
+				scrollerMap[i][j].age = 0;
+
 	} else if(updateRequired & BOTTOM) { // need to push all tiles UP and generate new ones on BOTTOM
 		for(CORE_INT j = 0; j < hTilesNeeded; j++)
 			for(CORE_INT i = 0; i < vTilesNeeded - 1; i++) 
 				scrollerMap[i][j].age = scrollerMap[i+1][j].age;
-		// resetting the BOTTOM column
-		for(CORE_INT j = 0; j < hTilesNeeded; j++) scrollerMap[vTilesNeeded-1][j].age = 0;
+		// resetting the rowsToRefresh BOTTOM columns
+		for(CORE_INT j = 0; j < hTilesNeeded; j++) 
+			for(CORE_INT i = vTilesNeeded - 1; i > vTilesNeeded - rowsToRefresh - 1; i--) 
+				scrollerMap[i][j].age = 0;
 	}
 
 	// reset the update state
@@ -139,21 +150,27 @@ void LevelScroller::pan(CORE_FLOAT x, CORE_FLOAT y) {
 
 	if(hShift > tileSize) {
 		updateRequired = updateRequired | LEFT;
+		columnsToRefresh = (int)(hShift / tileSize);
 		hShift = 0.f;
 	} else if (hShift < -tileSize) {
 		updateRequired = updateRequired | RIGHT;
+		columnsToRefresh = (int)(hShift / -tileSize);
 		hShift = 0.f;
 	}
 
 	if(vShift > tileSize) {
 		updateRequired = updateRequired | TOP;
+		rowsToRefresh = (int)(vShift / tileSize);
 		vShift = 0.f;
 	} else if (vShift < -tileSize) {
 		updateRequired = updateRequired | BOTTOM;
+		rowsToRefresh = (int)(vShift / -tileSize);
 		vShift = 0.f;
 	}
 	
-	if(updateRequired) updateScrollerTiles(updateRequired);
+	if(updateRequired) {
+		updateScrollerTiles(updateRequired);
+	}
 }
 
 void LevelScroller::drawBorder(SDL_Surface * dest) {
