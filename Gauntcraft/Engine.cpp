@@ -72,9 +72,9 @@ CORE_STATUS Engine::init(void) {
 	}
 
 	sprites = new SpriteSheet(this, "dirt.png");
-	characterSprite = new SpriteSheet(this, "claudius.png");
+	characterSprite = new SpriteSheet(this, "character2.png");
 
-	character = new Character(characterSprite, "claudius");
+	character = new Character(characterSprite, "alex");
 
 	level = new LevelScroller(sprites);
 
