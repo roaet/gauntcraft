@@ -18,8 +18,8 @@ void CoreEntity::moveTo(CORE_INT newX, CORE_INT newY) {
 }
 
 void CoreEntity::move(CORE_UINT32 deltaTicks) {
-	CORE_FLOAT xCalcVel = (float)xVel * (deltaTicks / 1000.f);
-	CORE_FLOAT yCalcVel = (float)yVel * (deltaTicks / 1000.f);
+	CORE_FLOAT xCalcVel = (CORE_FLOAT)xVel * (deltaTicks / 1000.f);
+	CORE_FLOAT yCalcVel = (CORE_FLOAT)yVel * (deltaTicks / 1000.f);
 	x += (CORE_INT) xCalcVel;
 	y += (CORE_INT) yCalcVel;	
 }

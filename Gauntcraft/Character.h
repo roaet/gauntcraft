@@ -33,10 +33,12 @@ private:
 	CORE_BOOL boosted;
 
 public:
+	Character(SpriteSheet *, std::string);
+	virtual ~Character();
+
 	using CoreEntity::move;
 	using CoreEntity::getX, CoreEntity::getY;
 	virtual void moveTo(CORE_INT newX, CORE_INT newY) override;
-	Character(SpriteSheet *, std::string);
 	virtual void handleInput(SDL_Event *) override;
 	virtual void show(SDL_Surface *) override;
 };

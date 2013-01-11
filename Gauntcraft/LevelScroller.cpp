@@ -7,7 +7,6 @@ LevelScroller::LevelScroller(SpriteSheet * sheet) {
 	hShift = vShift = 0;
 	columnsToRefresh = rowsToRefresh = 0;
 	updateRequired = RESET;
-	debugOutput.start();
 }
 
 LevelScroller::~LevelScroller() {
@@ -47,7 +46,6 @@ void LevelScroller::displayScrollerTiles(SDL_Surface * dest) {
 #if SCROLLERDEBUG == 1
 			switch(tile.age) {
 			case 1:
-				
 				boxRGBA(dest, xPos, yPos, 
 					    xPos + tileSize,
 					    yPos + tileSize,
@@ -74,14 +72,18 @@ void LevelScroller::displayScrollerTiles(SDL_Surface * dest) {
 			rectangleRGBA(dest, xPos, yPos, 
 					      xPos + tileSize,
 					      yPos + tileSize,
-					      255, 0, 0, 255);
+					      0, 0, 0, 50);
 #else
-			levelSheet->blitSprite("dirt", xPos, yPos,  dest); // fp -> int error
+			levelSheet->blitSprite("dirt", xPos, yPos,  dest);
 			if(tile.age == 1) {
-				levelSheet->blitSprite("blastdirt", xPos, yPos, dest);  // fp -> int error
+				levelSheet->blitSprite("blastdirt", xPos, yPos, dest);
 			} else if(tile.age < 5) {
-				levelSheet->blitSprite("darkdirt", xPos, yPos, dest);  // fp -> int error
+				levelSheet->blitSprite("darkdirt", xPos, yPos, dest);
 			}
+			rectangleRGBA(dest, xPos, yPos, 
+					      xPos + tileSize,
+					      yPos + tileSize,
+					      0, 0, 0, 50);
 #endif
 
 		}

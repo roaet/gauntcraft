@@ -72,14 +72,14 @@ CORE_STATUS Engine::init(void) {
 	}
 
 	sprites = new SpriteSheet(this, "dirt.png");
-	characterSprite = new SpriteSheet(this, "character2.png");
+	characterSprite = new SpriteSheet(this, "claudius.png");
 
-	character = new Character(characterSprite, "alex");
+	character = new Character(characterSprite, "claudius");
 
 	level = new LevelScroller(sprites);
 
 #if SCROLLERDEBUG == 1
-		SDL_Rect extents = {centerX- 80, centerY- 80, 160, 160};
+		SDL_Rect extents = {centerX - 80, centerY - 80, 160, 160};
 		level->setVisibleExtents(extents);
 #else
 		SDL_Rect extents = {0, 0, screenWidth, screenHeight};
@@ -149,10 +149,14 @@ CORE_STATUS Engine::run(void) {
 	update.start();
 	fps.start();
 	while(running) {
+		fpsLock.start();
 		doEvents();
 		doPreframe();
 		doFrame();
 		frameCount++;
+		if ( fpsLock.get_ticks() < 1000 / FRAME_CAP ) {
+			SDL_Delay( (1000/FRAME_CAP) - fpsLock.get_ticks() );
+		}
 		updateFPSCaption();
 	}
 	return CORE_SUCCESS;

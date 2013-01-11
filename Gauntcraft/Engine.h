@@ -14,9 +14,10 @@
 #include "ILevelScroller.h"
 #include "LevelScroller.h"
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
-const int SCREEN_BPP = 32;
+const CORE_INT SCREEN_WIDTH = 640;
+const CORE_INT SCREEN_HEIGHT = 480;
+const CORE_INT SCREEN_BPP = 32;
+const CORE_INT FRAME_CAP = 150;
 
 class Engine : public ISDLImageLoader {
 private:
@@ -43,8 +44,8 @@ private:
 	// FPS stuff
 	CORE_INT frameCount;
 	Timer fps;
+	Timer fpsLock;
 	Timer update;
-
 
 public:
 	Engine(void);

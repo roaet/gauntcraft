@@ -36,7 +36,6 @@ private:
 	void updateScrollerTiles(CORE_BITMASK directionalBitmask);
 
 	/* /// DEBUG TEST FUNCTIONS */
-	Timer debugOutput;
 	/* /// */
 
 	CORE_INT r_border, g_border, b_border;

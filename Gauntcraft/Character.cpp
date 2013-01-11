@@ -14,6 +14,10 @@ Character::Character(SpriteSheet * sheet, std::string spriteFrame) {
 
 }
 
+Character::~Character() {
+
+}
+
 void Character::handleMovement(void) {
 	if(north.toggle) {
 		north.velocity = north.velocity == 0 ? speed : -north.velocity;
@@ -123,7 +127,7 @@ void Character::show(SDL_Surface * dest) {
 	}
 	oldSpriteDirection = spriteDirection;
 
-	if(animationTimer.get_ticks() > 200) {
+	if(animationTimer.get_ticks() > 150) {
 		animationFrame++;
 		animationTimer.start();
 	}
