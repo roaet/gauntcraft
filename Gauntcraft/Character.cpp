@@ -3,7 +3,7 @@
 Character::Character(SpriteSheet * sheet, std::string spriteFrame) {
 	this->sheet = sheet;
 	this->spriteFrame = spriteFrame;
-	speed = 100;
+	speed = 200;
 	x = y = xVel = yVel = 0;
 	spriteDirection = 0;
 	north.velocity = south.velocity = east.velocity = west.velocity = 0;
@@ -88,7 +88,7 @@ void Character::handleInput(SDL_Event * event) {
 
 }
 
-void Character::moveTo(CORE_FLOAT newX, CORE_FLOAT newY) {
+void Character::moveTo(CORE_INT newX, CORE_INT newY) {
 	startX = newX;
 	startY = newY;
 }

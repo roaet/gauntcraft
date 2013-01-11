@@ -48,7 +48,7 @@ private:
 	// Variables for scrolling method
 	std::vector < std::vector <ScrollerTile> > scrollerMap;
 	CORE_INT columnsToRefresh, rowsToRefresh;
-	CORE_FLOAT hShift, vShift;
+	CORE_INT hShift, vShift;
 	CORE_BITMASK updateRequired;
 
 public:
@@ -57,7 +57,7 @@ public:
 
 	void setSpriteSheet(SpriteSheet *);
 
-	virtual void pan(CORE_FLOAT x, CORE_FLOAT y);
+	virtual void pan(CORE_INT x, CORE_INT y);
 	virtual void show(SDL_Surface *);
 	virtual void setVisibleExtents(SDL_Rect);
 };

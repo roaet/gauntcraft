@@ -10,10 +10,10 @@
 #include "Timer.h"
 
 typedef struct {
-	CORE_FLOAT velocity;
+	CORE_INT velocity;
 	CORE_BOOL toggle;
 	CORE_BOOL modified;
-	CORE_FLOAT modFactor;
+	CORE_INT modFactor;
 } CharMoveStatus;
 
 class Character : public CoreEntity {
@@ -22,7 +22,7 @@ private:
 
 	SpriteSheet * sheet;
 	std::string spriteFrame;
-	CORE_FLOAT startX, startY;
+	CORE_INT startX, startY;
 	CORE_BITMASK spriteDirection;
 	CORE_BITMASK oldSpriteDirection;
 	Timer animationTimer;
@@ -35,7 +35,7 @@ private:
 public:
 	using CoreEntity::move;
 	using CoreEntity::getX, CoreEntity::getY;
-	virtual void moveTo(CORE_FLOAT newX, CORE_FLOAT newY) override;
+	virtual void moveTo(CORE_INT newX, CORE_INT newY) override;
 	Character(SpriteSheet *, std::string);
 	virtual void handleInput(SDL_Event *) override;
 	virtual void show(SDL_Surface *) override;

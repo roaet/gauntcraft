@@ -4,8 +4,8 @@ Engine::Engine(void) {
 	logfile = stderr;
 	screenWidth = SCREEN_WIDTH;
 	screenHeight = SCREEN_HEIGHT;
-	centerX = screenWidth/2.f;
-	centerY = screenHeight/2.f;
+	centerX = screenWidth/2;
+	centerY = screenHeight/2;
 	screenBpp = SCREEN_BPP;
 	windowCaption = "Generic Title";
 	running = false;
@@ -111,11 +111,11 @@ CORE_STATUS Engine::doEvents(void) {
 }
 
 CORE_STATUS Engine::doPreframe(void) {
-	CORE_FLOAT preCharX = character->getX();
-	CORE_FLOAT preCharY = character->getY();
+	CORE_INT preCharX = character->getX();
+	CORE_INT preCharY = character->getY();
 	character->move(frameDelta.get_ticks());
-	CORE_FLOAT charDiffX = character->getX() - preCharX;
-	CORE_FLOAT charDiffY = character->getY() - preCharY;
+	CORE_INT charDiffX = character->getX() - preCharX;
+	CORE_INT charDiffY = character->getY() - preCharY;
 	if(level && (charDiffX != 0 || charDiffY != 0))
 		level->pan(-charDiffX, -charDiffY);
 	

@@ -40,8 +40,8 @@ void LevelScroller::displayScrollerTiles(SDL_Surface * dest) {
 	for(CORE_INT i = 0; i < vTilesNeeded; i++) {
 		for(CORE_INT j = 0; j < hTilesNeeded; j++) {
 			ScrollerTile tile = scrollerMap[i][j];
-			CORE_FLOAT xPos = tile.x + visibleExtents.x - LOADING_PADDING * tileSize;
-			CORE_FLOAT yPos = tile.y + visibleExtents.y - LOADING_PADDING * tileSize;
+			CORE_INT xPos = tile.x + visibleExtents.x - LOADING_PADDING * tileSize;
+			CORE_INT yPos = tile.y + visibleExtents.y - LOADING_PADDING * tileSize;
 			xPos += hShift;
 			yPos += vShift;
 #if SCROLLERDEBUG == 1
@@ -144,28 +144,28 @@ void LevelScroller::updateScrollerTiles(CORE_BITMASK directionalBitmask) {
 	updateRequired = RESET;
 }
 
-void LevelScroller::pan(CORE_FLOAT x, CORE_FLOAT y) {
+void LevelScroller::pan(CORE_INT x, CORE_INT y) {
 	hShift += x;
 	vShift += y;
 
 	if(hShift > tileSize) {
 		updateRequired = updateRequired | LEFT;
 		columnsToRefresh = (int)(hShift / tileSize);
-		hShift = 0.f;
+		hShift = 0;
 	} else if (hShift < -tileSize) {
 		updateRequired = updateRequired | RIGHT;
 		columnsToRefresh = (int)(hShift / -tileSize);
-		hShift = 0.f;
+		hShift = 0;
 	}
 
 	if(vShift > tileSize) {
 		updateRequired = updateRequired | TOP;
 		rowsToRefresh = (int)(vShift / tileSize);
-		vShift = 0.f;
+		vShift = 0;
 	} else if (vShift < -tileSize) {
 		updateRequired = updateRequired | BOTTOM;
 		rowsToRefresh = (int)(vShift / -tileSize);
-		vShift = 0.f;
+		vShift = 0;
 	}
 	
 	if(updateRequired) {

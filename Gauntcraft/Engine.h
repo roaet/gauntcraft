@@ -27,7 +27,7 @@ private:
 	void updateFPSCaption(void);
 
 	CORE_INT screenWidth, screenHeight, screenBpp;
-	CORE_FLOAT centerX, centerY;
+	CORE_INT centerX, centerY;
 	CORE_BOOL running;
 
 	std::string windowCaption;
