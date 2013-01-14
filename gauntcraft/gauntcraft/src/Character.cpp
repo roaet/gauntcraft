@@ -137,7 +137,11 @@ void Character::show(SDL_Surface * dest) {
 		animationTimer.stop();
 		selectedFrame = oldSpriteFrame;
 	}
-	if(!sheet->hasKey(selectedFrame)) selectedFrame = spriteFrame;
+	if(!sheet->hasKey(selectedFrame)) {
+        std::string errorFrame = selectedFrame;
+        selectedFrame = spriteFrame;
+    }
+    if(oldSpriteFrame != selectedFrame) animationFrame = 0;
 	oldSpriteFrame = selectedFrame;
 	sheet->blitAnimatedSprite(selectedFrame, (int)startX, (int)startY, animationFrame, dest);
 

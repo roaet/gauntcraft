@@ -87,37 +87,38 @@ CORE_STATUS SpriteSheet::load_from_ini(boost::property_tree::ptree pt) {
 				CORE_BOOL isBelow = false;
 				while(std::getline(directionlist, dir, ' ')) {
 					std::string newKey = key;
+
 					// These are control words that state where the next frame are
 					// if this is not first it will assume that the sprites
 					// are to the side
 					if(dir == "below") {
 						isBelow = true;
-						continue;
-					} 
+					} else { 
 
-					newKey += "-" + dir;
-					if(encounters != 0) {
-						// we are at a new sprite, create a new one and add it
-						// the position is different this time, but the rest
-						// are assumed to be the same
-						CORE_INT newX = x + (encounters * (*w * *frames));
-						CORE_INT newY = y;
-						if(isBelow) {
-							newX = x;
-							newY = y + (encounters * *h);
-						}
-						SpriteExtent * newExtent = new SpriteExtent(newX, newY, *w, *h);
-						if(randomSelections) newExtent->setRandom(*randomSelections);
-						if(frames) newExtent->setFrames(*frames);
-						newExtent->setIdleFrame(*idleframe);
-						spriteKeys.insert(newKey);
-						this->sprites[std::string(newKey)] = newExtent;
-					} else {
-						// we ran into the first sprite, please just add
-						// another key for it so we can access it this way
-						this->sprites[std::string(newKey)] = newExtent;
-					}
-					encounters++;
+                        newKey += "-" + dir;
+                        if(encounters != 0) {
+                            // we are at a new sprite, create a new one and add it
+                            // the position is different this time, but the rest
+                            // are assumed to be the same
+                            CORE_INT newX = x + (encounters * (*w * *frames));
+                            CORE_INT newY = y;
+                            if(isBelow) {
+                                newX = x;
+                                newY = y + (encounters * *h);
+                            }
+                            SpriteExtent * newExtent = new SpriteExtent(newX, newY, *w, *h);
+                            if(randomSelections) newExtent->setRandom(*randomSelections);
+                            if(frames) newExtent->setFrames(*frames);
+                            newExtent->setIdleFrame(*idleframe);
+                            spriteKeys.insert(newKey);
+                            this->sprites[std::string(newKey)] = newExtent;
+                        } else {
+                            // we ran into the first sprite, please just add
+                            // another key for it so we can access it this way
+                            this->sprites[std::string(newKey)] = newExtent;
+                        }
+                        encounters++;
+                    }
 				}
 			}
 		}
@@ -169,7 +170,7 @@ CORE_STATUS SpriteSheet::blitSprite(std::string name, CORE_INT x, CORE_INT y, SD
 CORE_STATUS SpriteSheet::blitAnimatedSprite(std::string name, CORE_INT x, CORE_INT y, CORE_INT frame, SDL_Surface* dest) {
 	SpriteExtent * rect = this->sprites[name];
 	SDL_Rect offset = {x, y, 0, 0};
-    SDL_Rect clip = rect->getRect();
+    SDL_Rect clip = rect->getRect(frame);
 	SDL_BlitSurface(sheet, &clip, dest, &offset);
 	return 0;
 }

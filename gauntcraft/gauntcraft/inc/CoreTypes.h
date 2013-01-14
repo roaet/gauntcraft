@@ -23,6 +23,4 @@ typedef CORE_INT CORE_BITMASK;
 #define SPRITEIDLE -16
 #define SPRITERANDOM -8
 
-#define derp
-
 #endif // class_sdlgauntcraft_coretypes
