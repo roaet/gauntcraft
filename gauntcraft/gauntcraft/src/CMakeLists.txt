@@ -1,12 +1,12 @@
-find_library(SDLMAIN_LIBRARY
-    NAMES SDLmain
-)
-
 find_package(SDL REQUIRED)
 find_package(SDL_image)
 find_package(Boost REQUIRED)
 find_package(OpenGL REQUIRED)
 
+find_library(SDLMAIN_LIBRARY
+    NAMES SDLmain SDL_main
+    PATH_SUFFIXES local/lib VisualC/SDLmain/Release
+)
 
 set (EXTRA_LIBS "")
 
@@ -21,6 +21,10 @@ file(GLOB gauntcraft_src
 
 set (EXTRA_LIBS ${EXTRA_LIBS} SDL_gfxPrimitives)
 
+if (APPLE)
+    set(EXTRA_LIBS ${EXTRA_LIBS} "-framework Cocoa")
+endif()
+
 add_executable(gauntcraft ${gauntcraft_src})
 
 target_link_libraries(
@@ -31,3 +35,11 @@ target_link_libraries(
     ${SDLMAIN_LIBRARY}
     ${EXTRA_LIBS}
 )
+
+if(APPLE)
+    set(BUNDLE_BINARY
+        ${CMAKE_CURRENT_BINARY_DIR}/HelloSDL.app/Contents/MacOS/HelloSDL)
+    add_custom_command(TARGET HelloSDL POST_BUILD
+        COMMAND python scripts/frameworkify.py ${BUNDLE_BINARY}
+        ${SDL_LIBRARY})
+endif()
