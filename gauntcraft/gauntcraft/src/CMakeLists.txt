@@ -1,19 +1,5 @@
-find_package(SDL REQUIRED)
-find_package(SDL_image)
-find_package(Boost REQUIRED)
-find_package(OpenGL REQUIRED)
-
-find_library(SDLMAIN_LIBRARY
-    NAMES SDLmain SDL_main
-    PATH_SUFFIXES local/lib VisualC/SDLmain/Release
-)
-
 set (EXTRA_LIBS "")
 
-include_directories(
-    ${gauntcraft_SOURCE_DIR}/gauntcraft/inc
-    ${gauntcraft_SOURCE_DIR}/SDL_gfxPrimitives
-)
 
 file(GLOB gauntcraft_src
     *.cpp
@@ -31,6 +17,10 @@ add_executable(
     MACOSX_BUNDLE
     ${gauntcraft_src}
 )
+
+#link_libraries(
+#    SGE `${SDLCONFIG} --static-libs`
+#)
 
 target_link_libraries(
     gauntcraft

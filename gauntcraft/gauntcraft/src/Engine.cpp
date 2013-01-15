@@ -42,7 +42,7 @@ void Engine::updateFPSCaption(void) {
 
 CORE_STATUS Engine::init_SDL(void) {
 	if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
-		fprintf(logfile, "Error initializing SDL");
+		fprintf(logfile, "Error initializing SDL %s", SDL_GetError());
 		return CORE_ERR;
 	}
 
@@ -55,7 +55,7 @@ CORE_STATUS Engine::init_SDL(void) {
 	CORE_INT flags = IMG_INIT_JPG | IMG_INIT_PNG;
 	CORE_INT initted = IMG_Init(flags);
 	if( (initted & flags) != flags) {
-		fprintf(logfile, "Could not init SDL_Image");
+		fprintf(logfile, "Could not init SDL_Image %s", IMG_GetError());
 		return CORE_ERR;
 	}
 
