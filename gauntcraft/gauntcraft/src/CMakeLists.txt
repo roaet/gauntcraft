@@ -25,7 +25,12 @@ if (APPLE)
     set(EXTRA_LIBS ${EXTRA_LIBS} "-framework Cocoa")
 endif()
 
-add_executable(gauntcraft ${gauntcraft_src})
+add_executable(
+    gauntcraft 
+    WIN32
+    MACOSX_BUNDLE
+    ${gauntcraft_src}
+)
 
 target_link_libraries(
     gauntcraft

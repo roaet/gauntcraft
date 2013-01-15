@@ -77,7 +77,7 @@ _ReSharper*/
 *.sass-cache
 
 #Project files
-[Bb]uild/
+[Bb]uild*/
 
 #Subversion files
 .svn
