@@ -5,8 +5,6 @@ file(GLOB gauntcraft_src
     *.cpp
 )
 
-set (EXTRA_LIBS ${EXTRA_LIBS} SDL_gfxPrimitives)
-
 if (APPLE)
     set(EXTRA_LIBS ${EXTRA_LIBS} "-framework Cocoa")
 endif()
@@ -27,8 +25,8 @@ target_link_libraries(
     ${OPENGL_LIBRARIES}
     ${SDL_LIBRARY}
     ${SDLIMAGE_LIBRARY}
+    ${SDLGFX_LIBRARY}
     ${SDLMAIN_LIBRARY}
-    ${EXTRA_LIBS}
 )
 
 if(APPLE)
