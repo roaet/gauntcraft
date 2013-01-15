@@ -8,7 +8,7 @@
 #include "CoreTypes.h"
 #include "ILevelScroller.h"
 #include "SDL/SDL.h"
-#include "SDL_gfxPrimitives.h"
+#include "SDL/SDL_gfxPrimitives.h"
 #include "SpriteSheet.h"
 #include "Timer.h"
 
