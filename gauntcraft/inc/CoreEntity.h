@@ -4,8 +4,8 @@
 #include <cmath>
 #include <string>
 
+#include "Core.h"
 #include "CoreTypes.h"
-#include "SDL.h"
 #include "SpriteSheet.h"
 
 class CoreEntity {

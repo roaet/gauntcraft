@@ -1,8 +1,8 @@
 #ifndef class_sdlgauntcraft_timer
 #define class_sdlgauntcraft_timer
 
+#include "Core.h"
 #include "CoreTypes.h"
-#include "SDL.h"
 
 class Timer {
 	CORE_INT startTicks;

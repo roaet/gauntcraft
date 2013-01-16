@@ -3,7 +3,7 @@
 
 #include <algorithm>
 
-#include "SDL.h"
+#include "Core.h"
 #include "CoreTypes.h"
 
 class CoreUtility {

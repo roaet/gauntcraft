@@ -128,7 +128,7 @@ CORE_STATUS SpriteSheet::load() {
 	boost::property_tree::ptree pt;
 	// Adding space in buffer for .ini\0
 	char * iniFilename = new char[filename.length() + 5];
-	sprintf_s(iniFilename, filename.length() + 5, "%s.ini", filename.c_str());
+	sprintf(iniFilename, "%s.ini", filename.c_str());
 	CORE_BOOL iniFileLoaded = false;
 	sheet = loader->loadImage(filename);
 	if(!sheet) {
@@ -161,14 +161,16 @@ CORE_STATUS SpriteSheet::load() {
 CORE_STATUS SpriteSheet::blitSprite(std::string name, CORE_INT x, CORE_INT y, SDL_Surface* dest) {
 	SpriteExtent * rect = this->sprites[name];
 	SDL_Rect offset = {x, y, 0, 0};
-	SDL_BlitSurface(sheet, &(rect->getRect()), dest, &offset);
+	SDL_Rect temp = rect->getRect();
+	SDL_BlitSurface(sheet, &temp, dest, &offset);
 	return 0;
 }
 
 CORE_STATUS SpriteSheet::blitAnimatedSprite(std::string name, CORE_INT x, CORE_INT y, CORE_INT frame, SDL_Surface* dest) {
 	SpriteExtent * rect = this->sprites[name];
 	SDL_Rect offset = {x, y, 0, 0};
-	SDL_BlitSurface(sheet, &(rect->getRect(frame)), dest, &offset);
+	SDL_Rect temp = rect->getRect(frame);
+	SDL_BlitSurface(sheet, &temp, dest, &offset);
 	return 0;
 }
 

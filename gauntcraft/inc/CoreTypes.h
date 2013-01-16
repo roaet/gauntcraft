@@ -1,7 +1,7 @@
 #ifndef class_sdlgauntcraft_coretypes
 #define class_sdlgauntcraft_coretypes
 
-#include "SDL.h"
+#include "Core.h"
 
 #define CORE_ERR -1
 #define CORE_SUCCESS 0

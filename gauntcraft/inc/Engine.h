@@ -4,10 +4,9 @@
 #include <string>
 
 #include "Character.h"
+#include "Core.h"
 #include "CoreUtility.h"
 #include "CoreTypes.h"
-#include "SDL.h"
-#include "SDL_image.h"
 #include "SpriteSheet.h"
 #include "ISDLImageLoader.h"
 #include "Timer.h"

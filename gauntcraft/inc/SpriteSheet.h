@@ -1,16 +1,15 @@
 #ifndef class_sdlgauntcraft_spritesheet
 #define class_sdlgauntcraft_spritesheet
+
 #include <algorithm>
 #include <cstdio>
 #include <iostream>
-#include <hash_map>
 #include <string>
 #include <sstream>
 #include <vector>
 #include <set>
 
-#include "SDL.h"
-#include "SDL_image.h"
+#include "Core.h"
 #include "SpriteExtent.h"
 #include "ISDLImageLoader.h"
 #include "boost/optional.hpp"

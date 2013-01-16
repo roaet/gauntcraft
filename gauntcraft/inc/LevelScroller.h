@@ -5,10 +5,9 @@
 #include <string>
 #include <vector>
 
+#include "Core.h"
 #include "CoreTypes.h"
 #include "ILevelScroller.h"
-#include "SDL.h"
-#include "SDL_gfxPrimitives.h"
 #include "SpriteSheet.h"
 #include "Timer.h"
 

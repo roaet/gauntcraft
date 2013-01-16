@@ -1,8 +1,8 @@
 #ifndef class_sdlgauntcraft_spriteextent
 #define class_sdlgauntcraft_spriteextent
 
+#include "Core.h"
 #include "CoreTypes.h"
-#include "SDL.h"
 #include <cstdlib>
 
 class SpriteExtent {
