@@ -53,6 +53,6 @@ Depends:
 <h2>Resources</h2>
 <ul>
   <li>The character sprite was taken from <a href="http://www.gdunlimited.net/forums/gallery/image/879-actor01/">gdunlimited</a></li>
-  <li>The dirt tiles were taking from <a href="http://lpc.opengameart.org/static/lpc-style-guide/styleguide.html">open game art</a></li>
+  <li>The dirt tiles were taken from <a href="http://lpc.opengameart.org/static/lpc-style-guide/styleguide.html">open game art</a></li>
 </ul>
 
