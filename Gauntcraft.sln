@@ -5,6 +5,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gauntcraft", "Gauntcraft\Ga
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GauntcraftCore", "GauntcraftCore\GauntcraftCore.vcxproj", "{12221E54-A1F5-44F5-89AB-42852A95DCFE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gauntcraftserver", "gauntcraftserver\gauntcraftserver.vcxproj", "{39532920-C098-418C-9A9E-69E828E916AC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -19,6 +21,10 @@ Global
 		{12221E54-A1F5-44F5-89AB-42852A95DCFE}.Debug|Win32.Build.0 = Debug|Win32
 		{12221E54-A1F5-44F5-89AB-42852A95DCFE}.Release|Win32.ActiveCfg = Release|Win32
 		{12221E54-A1F5-44F5-89AB-42852A95DCFE}.Release|Win32.Build.0 = Release|Win32
+		{39532920-C098-418C-9A9E-69E828E916AC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{39532920-C098-418C-9A9E-69E828E916AC}.Debug|Win32.Build.0 = Debug|Win32
+		{39532920-C098-418C-9A9E-69E828E916AC}.Release|Win32.ActiveCfg = Release|Win32
+		{39532920-C098-418C-9A9E-69E828E916AC}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

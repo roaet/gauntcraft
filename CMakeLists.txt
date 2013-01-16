@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 project (gauntcraft)
 
 add_subdirectory(GauntcraftCore)
-include_directories(GauntcraftCore/inc)
+add_subdirectory(gauntcraftserver)
+include_directories(${PROJECT_SOURCE_DIR}/GauntcraftCore/inc)
 
 FILE(GLOB sourceFiles "Gauntcraft/src/*.cpp")
 set(SOURCES ${sourceFiles})
@@ -36,10 +37,17 @@ target_link_libraries(
     ${EXTRA_LIBS}
 )
 
+set(CLIENTDIR "${CMAKE_CURRENT_BINARY_DIR}/output/client")
+ADD_CUSTOM_COMMAND(
+    TARGET gauntcraft
+    PRE_BUILD
+    COMMAND mkdir ${CMAKE_CURRENT_BINARY_DIR}/output
+)
+
 ADD_CUSTOM_COMMAND(
     TARGET gauntcraft
     POST_BUILD
-    COMMAND mkdir ${CMAKE_CURRENT_BINARY_DIR}/client
-    COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/gauntcraft ${CMAKE_CURRENT_BINARY_DIR}/client/gauntcraft
-    COMMAND cp -r ${PROJECT_SOURCE_DIR}/Gauntcraft/assets ${CMAKE_CURRENT_BINARY_DIR}/client/assets
+    COMMAND mkdir ${CLIENTDIR}
+    COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/gauntcraft ${CLIENTDIR}/gauntcraft
+    COMMAND cp -r ${PROJECT_SOURCE_DIR}/Gauntcraft/assets ${CLIENTDIR}/assets
 )
