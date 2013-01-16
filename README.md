@@ -5,6 +5,7 @@ A gauntlet styled minecraft inspired game. Currently it is using SDL but there i
 <h2>To build</h2>
 
 <h3>Windows</h3>
+Building on Windows does not use cmake. cmake is primarily for Linux and variants.
 
 Depends:
 <ul>
