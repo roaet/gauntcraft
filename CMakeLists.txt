@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 2.8)
 project (gauntcraft)
 
-add_subdirectory(GauntcraftCore)
+add_subdirectory(gauntcraftcore)
 add_subdirectory(gauntcraftserver)
-include_directories(${PROJECT_SOURCE_DIR}/GauntcraftCore/inc)
+include_directories(${PROJECT_SOURCE_DIR}/gauntcraftcore/inc)
 
-FILE(GLOB sourceFiles "Gauntcraft/src/*.cpp")
+FILE(GLOB sourceFiles "gauntcraft/src/*.cpp")
 set(SOURCES ${sourceFiles})
-FILE(GLOB headerFiles "Gauntcraft/inc/*.h")
+FILE(GLOB headerFiles "gauntcraft/inc/*.h")
 set(HEADERS ${headerFiles})
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/scripts")
@@ -28,7 +28,7 @@ add_executable(
 
 target_link_libraries(
     gauntcraft
-    GauntcraftCore
+    gauntcraftcore
     ${OPENGL_LIBRARIES}
     ${SDL_LIBRARY}
     ${SDLIMAGE_LIBRARY}

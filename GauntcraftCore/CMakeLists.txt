@@ -5,7 +5,7 @@ set(HEADERS ${headerFiles})
 
 #find_package(Boost REQUIRED)
 #find_package(OpenGL REQUIRED)
-add_library(GauntcraftCore
+add_library(gauntcraftcore
     ${SOURCES}
     ${HEADERS}
 )

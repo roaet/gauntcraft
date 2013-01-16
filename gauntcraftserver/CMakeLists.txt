@@ -1,4 +1,4 @@
-include_directories(${PROJECT_SOURCE_DIR}/GauntcraftCore/inc)
+include_directories(${PROJECT_SOURCE_DIR}/gauntcraftcore/inc)
 
 FILE(GLOB serversourceFiles "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 set(SERVERSOURCES ${serversourceFiles})
@@ -15,7 +15,7 @@ add_executable(
 
 target_link_libraries(
     gauntcraftserver
-    GauntcraftCore
+    gauntcraftcore
 )
 
 set(SERVERDIR "${CMAKE_CURRENT_BINARY_DIR}/../output/server")
