@@ -1,1 +1,0 @@
-subdirs(SDL_gfxPrimitives)

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\Character.h" />
+    <ClInclude Include="inc\CoreEntity.h" />
+    <ClInclude Include="inc\CoreTypes.h" />
+    <ClInclude Include="inc\CoreUtility.h" />
+    <ClInclude Include="inc\Engine.h" />
+    <ClInclude Include="inc\ILevelScroller.h" />
+    <ClInclude Include="inc\ILevelTileGenerator.h" />
+    <ClInclude Include="inc\ISDLImageLoader.h" />
+    <ClInclude Include="inc\LevelScroller.h" />
+    <ClInclude Include="inc\SpriteExtent.h" />
+    <ClInclude Include="inc\SpriteSheet.h" />
+    <ClInclude Include="inc\Timer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Character.cpp" />
+    <ClCompile Include="src\CoreEntity.cpp" />
+    <ClCompile Include="src\CoreUtility.cpp" />
+    <ClCompile Include="src\Engine.cpp" />
+    <ClCompile Include="src\LevelScroller.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\SpriteExtent.cpp" />
+    <ClCompile Include="src\SpriteSheet.cpp" />
+    <ClCompile Include="src\Timer.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{79ACE92A-E25F-4757-96F9-AC7EF1946BCB}</ProjectGuid>
+    <RootNamespace>Gauntcraft</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Users\jhammond\Documents\DEV\libs\SDL_gfx-2.0.24;C:\Users\jhammond\Documents\DEV\libs\boost_1_52_0;C:\Users\jhammond\Documents\DEV\libs\zlib-lib\include;C:\Users\jhammond\Documents\DEV\libs\SDL-1.2.15\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>C:\Users\jhammond\Documents\DEV\libs\SDL_gfx-2.0.24\Win32\Debug;C:\Users\jhammond\Documents\DEV\libs\zlib-lib\lib;C:\Users\jhammond\Documents\DEV\libs\SDL-1.2.15\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDLmain.lib;SDL.lib;SDL_image.lib;OpenGL32.lib;glu32.lib;SDL_gfx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
