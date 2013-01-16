@@ -11,6 +11,11 @@ find_package(SDL_gfx REQUIRED)
 find_package(Boost REQUIRED)
 find_package(OpenGL REQUIRED)
 
+find_library(SDLMAIN_LIBRARY
+    NAMES SDLmain
+    PATHS /usr/local/lib
+)
+
 include_directories(
     ${gauntcraft_SOURCE_DIR}/gauntcraft/inc
 )
