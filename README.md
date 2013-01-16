@@ -34,12 +34,11 @@ Depends:
 
 Depends:
 <ul>
-  <li>Boost</li>
-  <li>SDL 1.2.15</li>
-  <li>SDL_image</li>
-  <li>SDL_image must be compiled with jpeg and png support</li>
-  <li>SDL_gfx</li>
-  <li>zlib</li>
+  <li>On ubuntu: sudo apt-get install cmake libjpeg-dev libpng12-dev libpng++-dev libboost1.50-all-dev freeglut3-dev zlib1g-dev </li>
+  <li>SDL 1.2.15 <a href="http://www.libsdl.org/release/SDL-1.2.15.tar.gz">tar</a></li>
+  <li>SDL_image <a href="http://www.libsdl.org/projects/SDL_image/release/SDL_image-1.2.12.tar.gz">tar</a></li>
+  <li>SDL_image must be compiled with jpeg and png support (the apt above will get it)</li>
+  <li>SDL_gfx <a href="http://www.ferzkopp.net/Software/SDL_gfx-2.0/SDL_gfx-2.0.24.tar.gz">tar</a></li>
 </ul>
 
 <ol>
