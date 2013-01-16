@@ -3,6 +3,7 @@
 
 #include "../inc/Engine.h"
 #include "zlib.h"
+#include "GauntcraftCore.h"
 
 #if defined(MSDOS) || defined(OS2) || defined(WIN32) || defined(__CYGWIN__)
 #  include <fcntl.h>
@@ -19,6 +20,7 @@ int main(int argc, char ** argv) {
 	Engine* engine = new Engine();
 	engine->setWindowCaption("Gauntcraft");
 	engine->init();
+	random_function();
 	int ret = engine->run();
 	delete engine;
 	return ret;

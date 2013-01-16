@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 2.8)
 project (gauntcraft)
+
+add_subdirectory(GauntcraftCore)
+include_directories(GauntcraftCore/inc)
+
 FILE(GLOB sourceFiles "Gauntcraft/src/*.cpp")
 set(SOURCES ${sourceFiles})
 FILE(GLOB headerFiles "Gauntcraft/inc/*.h")
@@ -23,10 +27,19 @@ add_executable(
 
 target_link_libraries(
     gauntcraft
+    GauntcraftCore
     ${OPENGL_LIBRARIES}
     ${SDL_LIBRARY}
     ${SDLIMAGE_LIBRARY}
     ${SDLGFX_LIBRARY}
     ${SDLMAIN_LIBRARY}
     ${EXTRA_LIBS}
+)
+
+ADD_CUSTOM_COMMAND(
+    TARGET gauntcraft
+    POST_BUILD
+    COMMAND mkdir ${CMAKE_CURRENT_BINARY_DIR}/client
+    COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/gauntcraft ${CMAKE_CURRENT_BINARY_DIR}/client/gauntcraft
+    COMMAND cp -r ${PROJECT_SOURCE_DIR}/Gauntcraft/assets ${CMAKE_CURRENT_BINARY_DIR}/client/assets
 )

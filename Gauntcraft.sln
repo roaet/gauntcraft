@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C++ Express 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gauntcraft", "Gauntcraft\Gauntcraft.vcxproj", "{79ACE92A-E25F-4757-96F9-AC7EF1946BCB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GauntcraftCore", "GauntcraftCore\GauntcraftCore.vcxproj", "{12221E54-A1F5-44F5-89AB-42852A95DCFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		{79ACE92A-E25F-4757-96F9-AC7EF1946BCB}.Debug|Win32.Build.0 = Debug|Win32
 		{79ACE92A-E25F-4757-96F9-AC7EF1946BCB}.Release|Win32.ActiveCfg = Release|Win32
 		{79ACE92A-E25F-4757-96F9-AC7EF1946BCB}.Release|Win32.Build.0 = Release|Win32
+		{12221E54-A1F5-44F5-89AB-42852A95DCFE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{12221E54-A1F5-44F5-89AB-42852A95DCFE}.Debug|Win32.Build.0 = Debug|Win32
+		{12221E54-A1F5-44F5-89AB-42852A95DCFE}.Release|Win32.ActiveCfg = Release|Win32
+		{12221E54-A1F5-44F5-89AB-42852A95DCFE}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
