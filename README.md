@@ -43,11 +43,11 @@ Depends:
 </ul>
 
 <ol>
+  <li>if the build directory exists, delete it</li>
   <li>In root git dir create subdir 'build'</li>
   <li>cd build</li>
   <li>cmake ..</li>
   <li>make</li>
-  <li>you may need to copy the assets directory where the executable was placed</li>
 </ol>
 
 <h2>Resources</h2>
