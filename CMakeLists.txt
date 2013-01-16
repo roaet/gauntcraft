@@ -49,5 +49,5 @@ ADD_CUSTOM_COMMAND(
     POST_BUILD
     COMMAND mkdir ${CLIENTDIR}
     COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/gauntcraft ${CLIENTDIR}/gauntcraft
-    COMMAND cp -r ${PROJECT_SOURCE_DIR}/Gauntcraft/assets ${CLIENTDIR}/assets
+    COMMAND cp -r ${PROJECT_SOURCE_DIR}/gauntcraft/assets ${CLIENTDIR}/assets
 )
