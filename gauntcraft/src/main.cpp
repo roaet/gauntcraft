@@ -17,7 +17,7 @@
 #define CHUNK 16384
 
 int main(int argc, char ** argv) {
-	Engine* engine = new Engine();
+	gauntcraft::Engine* engine = new gauntcraft::Engine();
 	engine->setWindowCaption("Gauntcraft");
 	engine->init();
 	random_function();

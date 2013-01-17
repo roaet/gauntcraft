@@ -36,15 +36,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\CoreEntity.h">
-      <Filter>Header Files\engine\core</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\CoreTypes.h">
-      <Filter>Header Files\engine\core</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\CoreUtility.h">
-      <Filter>Header Files\engine\core</Filter>
-    </ClInclude>
     <ClInclude Include="inc\Character.h">
       <Filter>Header Files\entities</Filter>
     </ClInclude>
@@ -72,7 +63,16 @@
     <ClInclude Include="inc\ISDLImageLoader.h">
       <Filter>Header Files\interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="inc\Core.h">
+    <ClInclude Include="inc\ClientCore.h">
+      <Filter>Header Files\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ClientCoreEntity.h">
+      <Filter>Header Files\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ClientCoreUtility.h">
+      <Filter>Header Files\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ClientCoreTypes.h">
       <Filter>Header Files\engine\core</Filter>
     </ClInclude>
   </ItemGroup>

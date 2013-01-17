@@ -12,10 +12,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Character.h" />
-    <ClInclude Include="inc\Core.h" />
-    <ClInclude Include="inc\CoreEntity.h" />
-    <ClInclude Include="inc\CoreTypes.h" />
-    <ClInclude Include="inc\CoreUtility.h" />
+    <ClInclude Include="inc\ClientCore.h" />
+    <ClInclude Include="inc\ClientCoreEntity.h" />
+    <ClInclude Include="inc\ClientCoreTypes.h" />
+    <ClInclude Include="inc\ClientCoreUtility.h" />
     <ClInclude Include="inc\Engine.h" />
     <ClInclude Include="inc\ILevelScroller.h" />
     <ClInclude Include="inc\ILevelTileGenerator.h" />

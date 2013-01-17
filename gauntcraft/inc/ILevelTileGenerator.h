@@ -6,10 +6,10 @@
 #include "SDL.h"
 
 class LevelTile;
-
-class ILevelTileGenerator {
-public:
-	virtual LevelTile* generateTile(int x, int y) = 0;
-};
-
+namespace gauntcraft {
+	class ILevelTileGenerator {
+	public:
+		virtual LevelTile* generateTile(int x, int y) = 0;
+	};
+}
 #endif //class_sdlgauntcraft_ileveltilegenerator

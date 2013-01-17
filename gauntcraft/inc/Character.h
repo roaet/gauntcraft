@@ -3,8 +3,8 @@
 
 #include <string>
 
-#include "CoreEntity.h"
-#include "CoreTypes.h"
+#include "ClientCoreEntity.h"
+#include "ClientCoreTypes.h"
 #include "SDL.h"
 #include "SpriteSheet.h"
 #include "Timer.h"
@@ -15,33 +15,33 @@ typedef struct {
 	CORE_BOOL modified;
 	CORE_INT modFactor;
 } CharMoveStatus;
+namespace gauntcraft {
+	class Character : public gauntcraftcore::ClientCoreEntity {
+	private:
+		void handleMovement();
 
-class Character : public CoreEntity {
-private:
-	void handleMovement();
+		gauntcraft::SpriteSheet * sheet;
+		std::string spriteFrame;
+		CORE_INT startX, startY;
+		CORE_BITMASK spriteDirection;
+		CORE_BITMASK oldSpriteDirection;
+		gauntcraft::Timer animationTimer;
+		CORE_INT animationFrame;
+		std::string oldSpriteFrame;
+		CharMoveStatus north, south, east, west;
+		CORE_BOOL boost_toggle;
+		CORE_BOOL boosted;
 
-	SpriteSheet * sheet;
-	std::string spriteFrame;
-	CORE_INT startX, startY;
-	CORE_BITMASK spriteDirection;
-	CORE_BITMASK oldSpriteDirection;
-	Timer animationTimer;
-	CORE_INT animationFrame;
-	std::string oldSpriteFrame;
-	CharMoveStatus north, south, east, west;
-	CORE_BOOL boost_toggle;
-	CORE_BOOL boosted;
+	public:
+		Character(gauntcraft::SpriteSheet *, std::string);
+		virtual ~Character();
 
-public:
-	Character(SpriteSheet *, std::string);
-	virtual ~Character();
-
-	using CoreEntity::move;
-	using CoreEntity::getX;
-	using CoreEntity::getY;
-	virtual void moveTo(CORE_INT newX, CORE_INT newY);
-	virtual void handleInput(SDL_Event *);
-	virtual void show(SDL_Surface *);
-};
-
+		using ClientCoreEntity::move;
+		using ClientCoreEntity::getX;
+		using ClientCoreEntity::getY;
+		virtual void moveTo(CORE_INT newX, CORE_INT newY);
+		virtual void handleInput(SDL_Event *);
+		virtual void show(SDL_Surface *);
+	};
+}
 #endif //class_sdlgauntcraft_character

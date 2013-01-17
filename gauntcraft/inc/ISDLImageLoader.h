@@ -3,10 +3,10 @@
 
 #include "SDL.h"
 #include <string>
-
-class ISDLImageLoader {
-public:
-	virtual SDL_Surface* loadImage(std::string filename) = 0;
-};
-
+namespace gauntcraft {
+	class ISDLImageLoader {
+	public:
+		virtual SDL_Surface* loadImage(std::string filename) = 0;
+	};
+}
 #endif //class_sdlgauntcraft_isdlimageloader
