@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gauntcraft", "Gauntcraft\Gauntcraft.vcxproj", "{79ACE92A-E25F-4757-96F9-AC7EF1946BCB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gauntcraft", "Gauntcraft\Gauntcraft.vcxproj", "{79ACE92A-E25F-4757-96F9-AC7EF1946BCB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GauntcraftCore", "GauntcraftCore\GauntcraftCore.vcxproj", "{12221E54-A1F5-44F5-89AB-42852A95DCFE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gauntcraftcore", "GauntcraftCore\GauntcraftCore.vcxproj", "{12221E54-A1F5-44F5-89AB-42852A95DCFE}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gauntcraftserver", "gauntcraftserver\gauntcraftserver.vcxproj", "{39532920-C098-418C-9A9E-69E828E916AC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gauntcraft-testclient", "gauntcraft-testclient\gauntcraft-testclient.vcxproj", "{A589E35B-88D0-4E96-A310-E0BEFFC233AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{39532920-C098-418C-9A9E-69E828E916AC}.Debug|Win32.Build.0 = Debug|Win32
 		{39532920-C098-418C-9A9E-69E828E916AC}.Release|Win32.ActiveCfg = Release|Win32
 		{39532920-C098-418C-9A9E-69E828E916AC}.Release|Win32.Build.0 = Release|Win32
+		{A589E35B-88D0-4E96-A310-E0BEFFC233AE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A589E35B-88D0-4E96-A310-E0BEFFC233AE}.Debug|Win32.Build.0 = Debug|Win32
+		{A589E35B-88D0-4E96-A310-E0BEFFC233AE}.Release|Win32.ActiveCfg = Release|Win32
+		{A589E35B-88D0-4E96-A310-E0BEFFC233AE}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

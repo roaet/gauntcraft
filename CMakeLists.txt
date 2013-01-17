@@ -3,6 +3,7 @@ project (gauntcraft)
 
 add_subdirectory(gauntcraftcore)
 add_subdirectory(gauntcraftserver)
+add_subdirectory(gauntcraft-testclient)
 include_directories(${PROJECT_SOURCE_DIR}/gauntcraftcore/inc)
 
 FILE(GLOB sourceFiles "gauntcraft/src/*.cpp")

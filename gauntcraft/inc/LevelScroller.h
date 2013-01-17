@@ -23,7 +23,7 @@ typedef struct {
 #define TOP 4
 #define BOTTOM 8
 
-#define SCROLLERDEBUG 1
+#define SCROLLERDEBUG 0
 
 #define LOADING_PADDING 2
 
