@@ -23,7 +23,6 @@ Depends:
   <li>SDL_image</li>
   <li>SDL_gfx</li>
   <li>zlib</li>
-  <li>log4cxx (see the section below</li>
 </ul>
 
 <ol>
@@ -50,15 +49,14 @@ Depends:
   <li>make</li>
 </ol>
 
-<h3>log4cxx - Windows</h3>
-This library is pretty annoying to set up but there are excellent instructions
-<a href="http://blog.skegging-it-out.net/2011/01/building-log4cxx-with-visual-c.html">here</a>. Download log4cxx
-<a href="http://logging.apache.org/log4cxx/">here</a>.
-
-
 <h2>Resources</h2>
 <ul>
   <li>The character sprite was taken from <a href="http://www.gdunlimited.net/forums/gallery/image/879-actor01/">gdunlimited</a></li>
   <li>The dirt tiles were taken from <a href="http://lpc.opengameart.org/static/lpc-style-guide/styleguide.html">open game art</a></li>
+</ul>
+
+<h2>Notes</h2>
+<ul>
+  <li>Was planning to use log4cxx but it was too annoying to build</li>
 </ul>
 
