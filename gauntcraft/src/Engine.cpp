@@ -41,6 +41,7 @@ namespace gauntcraft {
 	}
 
 	CORE_STATUS Engine::init_SDL(void) {
+		CORELOG("Initializing SDL")
 		if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
 			fprintf(logfile, "Error initializing SDL");
 			return CORE_ERR;
@@ -124,7 +125,6 @@ namespace gauntcraft {
 	}
 
 	CORE_STATUS Engine::doFrame(void) {
-	
 		SDL_PixelFormat* format = screen->format;
 	
 		SDL_FillRect(screen, NULL, SDL_MapRGB(format, 255, 255, 255));

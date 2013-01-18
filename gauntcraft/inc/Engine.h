@@ -4,6 +4,7 @@
 #include <string>
 
 #include "Character.h"
+#include "GauntcraftCore.h"
 #include "ClientCore.h"
 #include "ClientCoreUtility.h"
 #include "ClientCoreTypes.h"
