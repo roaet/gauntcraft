@@ -36,7 +36,7 @@ Depends:
 
 <h3>Linux</h3>
 
-Depends:
+Depends (all of these are assumed to be installed to the system /usr/local):
 <ul>
   <li>On ubuntu: sudo apt-get install cmake libjpeg-dev libpng12-dev libpng++-dev libboost1.50-all-dev freeglut3-dev zlib1g-dev </li>
   <li>SDL 1.2.15 <a href="http://www.libsdl.org/release/SDL-1.2.15.tar.gz">tar</a></li>
