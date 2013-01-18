@@ -8,11 +8,13 @@ chance it will move to OpenGL. It is programmed in C++.
 
 Basic tile engine with 'infinite scrolling' support.
 <h2>Next steps</h2>
-<ul>
+<ol>
   <li>Client needs to reach a point where it is <b>necessary</b> for a server to exist, 
   otherwise networking code would just be making tiles.</li>
   <li>Network infrastructure</li>
-</ul>
+  <li>Plugin/Mod foundation</li>
+  <li>Game Features</li>
+</ol>
 <h2>To build</h2>
 
 <h3>Windows</h3>
