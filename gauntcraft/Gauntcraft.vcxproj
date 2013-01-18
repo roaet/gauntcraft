@@ -19,8 +19,11 @@
     <ClInclude Include="inc\Engine.h" />
     <ClInclude Include="inc\ILevelScroller.h" />
     <ClInclude Include="inc\ILevelTileGenerator.h" />
+    <ClInclude Include="inc\IMouseTarget.h" />
     <ClInclude Include="inc\ISDLImageLoader.h" />
     <ClInclude Include="inc\LevelScroller.h" />
+    <ClInclude Include="inc\LevelScrollerTile.h" />
+    <ClInclude Include="inc\MouseShooter.h" />
     <ClInclude Include="inc\SpriteExtent.h" />
     <ClInclude Include="inc\SpriteSheet.h" />
     <ClInclude Include="inc\Timer.h" />
@@ -31,7 +34,9 @@
     <ClCompile Include="src\CoreUtility.cpp" />
     <ClCompile Include="src\Engine.cpp" />
     <ClCompile Include="src\LevelScroller.cpp" />
+    <ClCompile Include="src\LevelScrollerTile.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MouseShooter.cpp" />
     <ClCompile Include="src\SpriteExtent.cpp" />
     <ClCompile Include="src\SpriteSheet.cpp" />
     <ClCompile Include="src\Timer.cpp" />

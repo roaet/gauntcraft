@@ -8,8 +8,9 @@
 #include "SpriteSheet.h"
 #include "ISDLImageLoader.h"
 #include "Timer.h"
-#include "ILevelScroller.h"
 #include "LevelScroller.h"
+#include "LevelScroller.h"
+#include "MouseShooter.h"
 
 const CORE_INT SCREEN_WIDTH = 640;
 const CORE_INT SCREEN_HEIGHT = 480;
@@ -36,13 +37,15 @@ namespace gauntcraft {
 		Character * character;
 		gauntcraft::Timer frameDelta;
 
-		ILevelScroller* level;
+		LevelScroller* level;
 
 		// FPS stuff
 		CORE_INT frameCount;
 		gauntcraft::Timer fps;
 		gauntcraft::Timer fpsLock;
 		gauntcraft::Timer update;
+
+		MouseShooter mouseShooter;
 
 	public:
 		Engine(void);

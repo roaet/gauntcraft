@@ -78,6 +78,7 @@ namespace gauntcraft {
 		character = new Character(characterSprite, "alex");
 
 		level = new LevelScroller(sprites);
+		mouseShooter.registerTarget(level);
 
 	#if SCROLLERDEBUG == 1
 			SDL_Rect extents = {centerX - 80, centerY - 80, 160, 160};
@@ -107,6 +108,7 @@ namespace gauntcraft {
 				}
 			}
 			character->handleInput(&event);
+			mouseShooter.shootMouse(&event);
 		}
 		return CORE_SUCCESS;
 	}

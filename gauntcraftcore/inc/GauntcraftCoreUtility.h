@@ -8,6 +8,7 @@ namespace gauntcraftcore {
 	class GauntcraftCoreUtility {
 
 	public:
+		// TODO: clearPtr is not implemented properly.
 		static void clearPtr(void *);
 		static bool failed(CORE_INT);
 	};

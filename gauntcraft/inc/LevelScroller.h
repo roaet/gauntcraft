@@ -7,8 +7,10 @@
 
 #include "ClientCore.h"
 #include "ILevelScroller.h"
+#include "IMouseTarget.h"
 #include "SpriteSheet.h"
 #include "Timer.h"
+#include "LevelScrollerTile.h"
 
 typedef struct {
 	CORE_INT age;
@@ -24,9 +26,11 @@ typedef struct {
 
 #define SCROLLERDEBUG 0
 
+#define INVALID_MOUSE -1
+
 #define LOADING_PADDING 2
 namespace gauntcraft {
-	class LevelScroller : public ILevelScroller{
+	class LevelScroller : public ILevelScroller, public IMouseTarget{
 	private:
 		void drawBorder(SDL_Surface *);
 		void generateScrollerTiles();
@@ -43,14 +47,19 @@ namespace gauntcraft {
 		CORE_INT hTilesNeeded, vTilesNeeded;
 
 		// Variables for scrolling method
-		std::vector < std::vector <ScrollerTile> > scrollerMap;
+		std::vector < std::vector <gauntcraft::LevelScrollerTile> > scrollerMap;
 		CORE_INT columnsToRefresh, rowsToRefresh;
 		CORE_INT hShift, vShift;
 		CORE_BITMASK updateRequired;
 
+		CORE_INT lastMouseX, lastMouseY;
+
 	public:
 		LevelScroller(gauntcraft::SpriteSheet *);
 		virtual ~LevelScroller();
+
+		//IMouseTarget stuff
+		virtual CORE_BOOL targetHit(SDL_Event * event);
 
 		void setSpriteSheet(gauntcraft::SpriteSheet *);
 
