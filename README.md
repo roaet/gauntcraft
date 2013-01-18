@@ -26,6 +26,7 @@ Depends:
   <li><a href="http://code.google.com/p/google-glog/">google-glog</a>
   (<a href="http://google-glog.googlecode.com/svn/trunk/doc/glog.html">HOWTO</a>) 
   (<a href="http://code.google.com/p/google-glog/issues/detail?id=117">BUILD ISSUE</a>)
+  (<a href="http://code.google.com/p/google-glog/issues/detail?id=94">WARNING ISSUE</a>)
   </li>
 </ul>
 
