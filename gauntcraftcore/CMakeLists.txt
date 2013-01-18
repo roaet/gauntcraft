@@ -9,3 +9,8 @@ add_library(gauntcraftcore
     ${SOURCES}
     ${HEADERS}
 )
+
+target_link_libraries(
+    gauntcraftcore
+    ${GLOG_LIBRARY}
+)

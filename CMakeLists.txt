@@ -13,6 +13,12 @@ set(HEADERS ${headerFiles})
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/scripts")
 
+find_library(GLOG_LIBRARY
+    NAMES glog
+    PATHS /usr/local
+)
+
+set(EXTRA_LIBS ${EXTRA_LIBS} ${GLOG_LIBRARY})
 find_package(SDL REQUIRED)
 find_package(SDL_image REQUIRED)
 find_package(SDL_gfx REQUIRED)

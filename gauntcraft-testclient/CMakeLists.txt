@@ -16,6 +16,7 @@ add_executable(
 target_link_libraries(
     gauntcraft-testclient
     gauntcraftcore
+    ${GLOG_LIBRARY}
 )
 
 set(SERVERDIR "${CMAKE_CURRENT_BINARY_DIR}/../output/testclient")

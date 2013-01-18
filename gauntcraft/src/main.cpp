@@ -4,6 +4,7 @@
 #include "../inc/Engine.h"
 #include "zlib.h"
 #include "GauntcraftCore.h"
+#include <glog/logging.h>
 
 #if defined(MSDOS) || defined(OS2) || defined(WIN32) || defined(__CYGWIN__)
 #  include <fcntl.h>
@@ -17,6 +18,10 @@
 #define CHUNK 16384
 
 int main(int argc, char ** argv) {
+	google::InitGoogleLogging(argv[0]);
+
+	google::LogToStderr();
+	LOG(INFO) << "Starting gauntcraft";
 	gauntcraft::Engine* engine = new gauntcraft::Engine();
 	engine->setWindowCaption("Gauntcraft");
 	engine->init();

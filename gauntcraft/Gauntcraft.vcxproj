@@ -70,10 +70,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\jhammond\Documents\DEV\libs\SDL_gfx-2.0.24;C:\Users\jhammond\Documents\DEV\libs\boost_1_52_0;C:\Users\jhammond\Documents\DEV\libs\zlib-lib\include;C:\Users\jhammond\Documents\DEV\libs\SDL-1.2.15\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\jhammond\dev\libs\glog-0.3.2\glog-0.3.2\src\windows;C:\Users\jhammond\Documents\DEV\libs\SDL_gfx-2.0.24;C:\Users\jhammond\Documents\DEV\libs\boost_1_52_0;C:\Users\jhammond\Documents\DEV\libs\zlib-lib\include;C:\Users\jhammond\Documents\DEV\libs\SDL-1.2.15\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>C:\Users\jhammond\Documents\DEV\libs\SDL_gfx-2.0.24\Win32\Debug;C:\Users\jhammond\Documents\DEV\libs\zlib-lib\lib;C:\Users\jhammond\Documents\DEV\libs\SDL-1.2.15\lib\x86;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\jhammond\dev\libs\glog-0.3.2\glog-0.3.2\vsprojects\libglog\Release;C:\Users\jhammond\Documents\DEV\libs\SDL_gfx-2.0.24\Win32\Debug;C:\Users\jhammond\Documents\DEV\libs\zlib-lib\lib;C:\Users\jhammond\Documents\DEV\libs\SDL-1.2.15\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -83,7 +83,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDLmain.lib;SDL.lib;SDL_image.lib;OpenGL32.lib;glu32.lib;SDL_gfx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDLmain.lib;SDL.lib;SDL_image.lib;OpenGL32.lib;glu32.lib;libglog.lib;SDL_gfx.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>

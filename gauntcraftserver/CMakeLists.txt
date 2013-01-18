@@ -7,6 +7,12 @@ set(SERVERHEADERS ${serverheaderFiles})
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/scripts")
 
+
+find_library(GLOG_LIBRARY
+    NAMES glog
+    PATHS /usr/local
+)
+
 add_executable(
     gauntcraftserver
     ${SERVERSOURCES}
@@ -16,6 +22,7 @@ add_executable(
 target_link_libraries(
     gauntcraftserver
     gauntcraftcore
+    ${GLOG_LIBRARY}
 )
 
 set(SERVERDIR "${CMAKE_CURRENT_BINARY_DIR}/../output/server")
