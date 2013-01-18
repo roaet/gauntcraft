@@ -5,8 +5,11 @@ chance it will move to OpenGL. It is programmed in C++.
 
 <h2>Current Status</h2>
 <img src="http://roaet.com/images/gauntcraft_001.png"/>
-
-Basic tile engine with 'infinite scrolling' support.
+<ul>
+  <li>Basic tile engine with 'infinite scrolling' support.</li>
+  <li>Some helpful core features</li>
+  <li>Basic sprite format</li>
+</ul>
 <h2>Next steps</h2>
 <ol>
   <li>Client needs to reach a point where it is <b>necessary</b> for a server to exist, 
