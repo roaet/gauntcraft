@@ -2,7 +2,6 @@
 #define class_sdlgauntcraft_spriteextent
 
 #include "ClientCore.h"
-#include "ClientCoreTypes.h"
 #include <cstdlib>
 namespace gauntcraft {
 	class SpriteExtent {

@@ -30,12 +30,21 @@
     <ClInclude Include="inc\CoreInfoheader.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="inc\GauntcraftCoreTypes.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\GauntcraftCoreUtility.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GauntcraftCore.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\CoreInfoheader.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GauntcraftCoreUtility.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>

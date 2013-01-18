@@ -3,8 +3,8 @@
 
 #include <string>
 
+#include "ClientCore.h"
 #include "ClientCoreEntity.h"
-#include "ClientCoreTypes.h"
 #include "SDL.h"
 #include "SpriteSheet.h"
 #include "Timer.h"

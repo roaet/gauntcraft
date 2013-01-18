@@ -84,10 +84,13 @@
   <ItemGroup>
     <ClInclude Include="inc\CoreInfoheader.h" />
     <ClInclude Include="inc\GauntcraftCore.h" />
+    <ClInclude Include="inc\GauntcraftCoreTypes.h" />
+    <ClInclude Include="inc\GauntcraftCoreUtility.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CoreInfoheader.cpp" />
     <ClCompile Include="src\GauntcraftCore.cpp" />
+    <ClCompile Include="src\GauntcraftCoreUtility.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

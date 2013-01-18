@@ -2,7 +2,6 @@
 #define class_sdlgauntcraft_timer
 
 #include "ClientCore.h"
-#include "ClientCoreTypes.h"
 namespace gauntcraft {
 	class Timer {
 		CORE_INT startTicks;

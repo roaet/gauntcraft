@@ -17,14 +17,4 @@ namespace gauntcraftcore {
 		return ret;
 	}
 
-	void ClientCoreUtility::clearPtr(void * pt) {
-		if(pt) {
-			delete pt;
-			pt = NULL;
-		}
-	}
-
-	bool ClientCoreUtility::failed(CORE_INT status) {
-		return (status < 0);
-	}
 }

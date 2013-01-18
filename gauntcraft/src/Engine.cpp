@@ -16,10 +16,10 @@ namespace gauntcraft {
 	}
 
 	Engine::~Engine(void) {
-		gauntcraftcore::ClientCoreUtility::clearPtr(sprites);
-		gauntcraftcore::ClientCoreUtility::clearPtr(character);
-		gauntcraftcore::ClientCoreUtility::clearPtr(level);
-		gauntcraftcore::ClientCoreUtility::clearPtr(characterSprite);
+		gauntcraftcore::GauntcraftCoreUtility::clearPtr(sprites);
+		gauntcraftcore::GauntcraftCoreUtility::clearPtr(character);
+		gauntcraftcore::GauntcraftCoreUtility::clearPtr(level);
+		gauntcraftcore::GauntcraftCoreUtility::clearPtr(characterSprite);
 		SDL_Quit();
 	}
 
@@ -67,7 +67,7 @@ namespace gauntcraft {
 	}
 
 	CORE_STATUS Engine::init(void) {
-		if(gauntcraftcore::ClientCoreUtility::failed(init_SDL())) {
+		if(gauntcraftcore::GauntcraftCoreUtility::failed(init_SDL())) {
 			fprintf(logfile, "Error initializing SDL");
 			return CORE_ERR;
 		}

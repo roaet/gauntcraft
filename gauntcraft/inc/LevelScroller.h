@@ -6,7 +6,6 @@
 #include <vector>
 
 #include "ClientCore.h"
-#include "ClientCoreTypes.h"
 #include "ILevelScroller.h"
 #include "SpriteSheet.h"
 #include "Timer.h"

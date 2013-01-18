@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "ClientCoreTypes.h"
+#include "ClientCore.h"
 #include "SDL.h"
 namespace gauntcraft {
 	class ILevelScroller {

@@ -5,7 +5,6 @@
 #include <string>
 
 #include "ClientCore.h"
-#include "ClientCoreTypes.h"
 #include "SpriteSheet.h"
 namespace gauntcraftcore {
 	class ClientCoreEntity {
