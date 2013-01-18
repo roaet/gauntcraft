@@ -23,6 +23,7 @@ Depends:
   <li>SDL_image</li>
   <li>SDL_gfx</li>
   <li>zlib</li>
+  <li>log4cxx (see the section below</li>
 </ul>
 
 <ol>
@@ -48,6 +49,12 @@ Depends:
   <li>cmake ..</li>
   <li>make</li>
 </ol>
+
+<h3>log4cxx - Windows</h3>
+This library is pretty annoying to set up but there are excellent instructions
+<a href="http://blog.skegging-it-out.net/2011/01/building-log4cxx-with-visual-c.html">here</a>. Download log4cxx
+<a href="http://logging.apache.org/log4cxx/">here</a>.
+
 
 <h2>Resources</h2>
 <ul>
