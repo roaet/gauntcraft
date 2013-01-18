@@ -43,6 +43,7 @@ Depends:
   <li>SDL_image <a href="http://www.libsdl.org/projects/SDL_image/release/SDL_image-1.2.12.tar.gz">tar</a></li>
   <li>SDL_image must be compiled with jpeg and png support (the apt above will get it)</li>
   <li>SDL_gfx <a href="http://www.ferzkopp.net/Software/SDL_gfx-2.0/SDL_gfx-2.0.24.tar.gz">tar</a></li>
+  <li><a href="http://code.google.com/p/google-glog/">google-glog</a></li>
 </ul>
 
 <ol>
