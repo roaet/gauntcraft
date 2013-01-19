@@ -11,16 +11,19 @@ namespace gauntcraft {
 		running = false;
 		player = NULL;
 		level = NULL;
-		sprites = NULL;
 		frameCount = 0;
+		spriteManager = new SpriteSheetManager(this);
 	}
 
 	Engine::~Engine(void) {
-		gauntcraftcore::GauntcraftCoreUtility::clearPtr(sprites);
 		gauntcraftcore::GauntcraftCoreUtility::clearPtr(player);
 		gauntcraftcore::GauntcraftCoreUtility::clearPtr(level);
-		gauntcraftcore::GauntcraftCoreUtility::clearPtr(characterSprite);
+		delete spriteManager;
 		SDL_Quit();
+	}
+
+	SpriteSheetManager * Engine::getSpriteManager() {
+		return NULL;
 	}
 
 	void Engine::setScreenExtents(CORE_INT width, CORE_INT height) {
@@ -74,14 +77,13 @@ namespace gauntcraft {
 			return CORE_ERR;
 		}
 
-		sprites = new SpriteSheet(this, "assets/sprites/grass.png");
-		characterSprite = new SpriteSheet(this, "assets/sprites/character2.png");
+		SpriteEntity * tempSprite = new SpriteEntity(this, "character");
 
-		player = new Character(characterSprite, "alex");
 
-		level = new LevelScroller(sprites);
-		level->setEntitySpriteSheet(new SpriteSheet(this, "assets/sprites/trunk.png"));
-		level->setEntitySpriteSheet2(new SpriteSheet(this, "assets/sprites/treetop.png"));
+		player = new Character(spriteManager->getSheet("character2.png"), "alex");
+		level = new LevelScroller(spriteManager->getSheet("grass.png"));
+		level->setEntitySpriteSheet(spriteManager->getSheet("trunk.png"));
+		level->setEntitySpriteSheet2(spriteManager->getSheet("treetop.png"));
 		mouseShooter.registerTarget(level);
 
 	#if SCROLLERDEBUG == 1

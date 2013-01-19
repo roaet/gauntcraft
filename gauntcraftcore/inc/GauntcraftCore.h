@@ -5,6 +5,7 @@
 #include "CoreInfoheader.h"
 #include "GauntcraftCoreTypes.h"
 #include "GauntcraftCoreUtility.h"
+#include "GauntcraftCoreGeometry.h"
 
 namespace gauntcraft {
 	typedef enum {

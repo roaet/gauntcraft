@@ -82,8 +82,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="inc\GauntcraftCoreGeoPoint.h" />
     <ClInclude Include="inc\CoreInfoheader.h" />
     <ClInclude Include="inc\GauntcraftCore.h" />
+    <ClInclude Include="inc\GauntcraftCoreGeometry.h" />
     <ClInclude Include="inc\GauntcraftCoreTypes.h" />
     <ClInclude Include="inc\GauntcraftCoreUtility.h" />
   </ItemGroup>

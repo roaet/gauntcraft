@@ -96,6 +96,18 @@
     <ClInclude Include="inc\LevelScrollerEntity.h">
       <Filter>Header Files\engine</Filter>
     </ClInclude>
+    <ClInclude Include="inc\SpriteSheetManager.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SpriteObject.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ICoreServicesProvider.h">
+      <Filter>Header Files\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SpriteEntity.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine.cpp">
@@ -138,6 +150,15 @@
       <Filter>Source Files\engine</Filter>
     </ClCompile>
     <ClCompile Include="src\LevelScrollerEntity.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpriteSheetManager.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpriteObject.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpriteEntity.cpp">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
   </ItemGroup>

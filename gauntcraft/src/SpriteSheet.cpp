@@ -6,16 +6,18 @@ namespace gauntcraft {
 		this->loader = loader;
 
 		sheet = NULL;
-		load();
+		this->valid = CORE_SUCCESS == load();
 	}
 
 	SpriteSheet::~SpriteSheet() {
 		if(sheet) {
 			SDL_FreeSurface(sheet);
 		}
-		for(SpriteHash::iterator it = sprites.begin(); it != sprites.end(); ++it) {
-			delete it->second;
-		}
+		sprites.clear();
+	}
+
+	CORE_BOOL SpriteSheet::isValid() {
+		return this->valid;
 	}
 
 	CORE_STATUS SpriteSheet::load_from_ini(boost::property_tree::ptree pt) {
@@ -132,7 +134,7 @@ namespace gauntcraft {
 		CORE_BOOL iniFileLoaded = false;
 		sheet = loader->loadImage(filename);
 		if(!sheet) {
-			fprintf(logfile, "Error loading spritesheet");
+			LOG(ERROR) << "Error loading spritesheet";
 			return 1;
 		}
 
@@ -141,17 +143,17 @@ namespace gauntcraft {
 			iniFileLoaded = true;
 
 		} catch (boost::property_tree::ini_parser_error e) {
-			fprintf(logfile, "Error loading %s", iniFilename);
+			LOG(ERROR) << "Error loading " << iniFilename;  
 		}
-	
 		delete iniFilename;
+	
 		if(iniFileLoaded) {
 			if(load_from_ini(pt) < 0) {
-				fprintf(logfile, "Problem parsing logfile");
+				LOG(ERROR) << "Error loading spritesheeti ini";
 				return 1;
 			}
 		} else {
-			fprintf(logfile, "Error locating spritesheet ini file");
+			LOG(ERROR) << "Error locating spritesheet ini file";
 			return 1;
 		}
 

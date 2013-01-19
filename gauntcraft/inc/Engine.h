@@ -6,20 +6,23 @@
 #include "Character.h"
 #include "ClientCore.h"
 #include "SpriteSheet.h"
+#include "SpriteSheetManager.h"
 #include "ISDLImageLoader.h"
+#include "ICoreServicesProvider.h"
 #include "Timer.h"
 #include "LevelScroller.h"
 #include "LevelScroller.h"
 #include "MouseShooter.h"
 #include "KeyboardHandler.h"
 #include "InputStack.h"
+#include "SpriteEntity.h"
 
 const CORE_INT SCREEN_WIDTH = 640;
 const CORE_INT SCREEN_HEIGHT = 480;
 const CORE_INT SCREEN_BPP = 32;
 const CORE_INT FRAME_CAP = 150;
 namespace gauntcraft {
-	class Engine : public ISDLImageLoader {
+	class Engine : public ICoreServicesProvider, public ISDLImageLoader {
 	private:
 		CORE_STATUS doEvents(void);
 		CORE_STATUS doPreframe(void);
@@ -34,10 +37,9 @@ namespace gauntcraft {
 		std::string windowCaption;
 		SDL_Surface* screen;
 		FILE* logfile;
-		gauntcraft::SpriteSheet* sprites;
-		gauntcraft::SpriteSheet* characterSprite;
 		Character * player;
 		gauntcraft::Timer frameDelta;
+		SpriteSheetManager * spriteManager;
 
 		LevelScroller* level;
 		KeyboardHandler keys;
@@ -56,7 +58,7 @@ namespace gauntcraft {
 
 		void setScreenExtents(CORE_INT width, CORE_INT height);
 		void setWindowCaption(std::string caption);
-
+		virtual SpriteSheetManager * getSpriteManager();
 		CORE_STATUS init(void);
 		CORE_STATUS run(void);
 

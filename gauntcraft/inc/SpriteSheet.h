@@ -28,6 +28,7 @@ namespace gauntcraft {
 		std::string filename;
 		ISDLImageLoader * loader;
 		FILE* logfile;
+		CORE_BOOL valid;
 
 		SpriteHash sprites;
 		std::set<std::string> spriteKeys;
@@ -41,6 +42,7 @@ namespace gauntcraft {
 		CORE_STATUS blitAnimatedSprite(std::string name, CORE_INT x, CORE_INT y, CORE_INT frame, SDL_Surface* dest);
 		SDL_Rect getSpriteDimensions(std::string name);
 		CORE_BOOL hasKey(std::string key);
+		CORE_BOOL isValid();
 	};
 }
 #endif

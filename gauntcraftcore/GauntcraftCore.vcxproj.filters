@@ -19,6 +19,9 @@
     <Filter Include="Source Files\Core">
       <UniqueIdentifier>{1e119dcb-5251-44d2-b3ac-d03af944430d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Core\Geometry">
+      <UniqueIdentifier>{3a34b7b7-84a7-427e-9fc9-9702b9747ce1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -35,6 +38,12 @@
     </ClInclude>
     <ClInclude Include="inc\GauntcraftCoreUtility.h">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\GauntcraftCoreGeometry.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\GauntcraftCoreGeoPoint.h">
+      <Filter>Header Files\Core\Geometry</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

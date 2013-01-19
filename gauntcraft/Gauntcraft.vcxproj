@@ -17,6 +17,8 @@
     <ClInclude Include="inc\ClientCoreTypes.h" />
     <ClInclude Include="inc\ClientCoreUtility.h" />
     <ClInclude Include="inc\Engine.h" />
+    <ClInclude Include="inc\SpriteEntity.h" />
+    <ClInclude Include="inc\ICoreServicesProvider.h" />
     <ClInclude Include="inc\IKeyboardTarget.h" />
     <ClInclude Include="inc\ILevelScroller.h" />
     <ClInclude Include="inc\ILevelTileGenerator.h" />
@@ -29,7 +31,9 @@
     <ClInclude Include="inc\LevelScrollerTile.h" />
     <ClInclude Include="inc\MouseShooter.h" />
     <ClInclude Include="inc\SpriteExtent.h" />
+    <ClInclude Include="inc\SpriteObject.h" />
     <ClInclude Include="inc\SpriteSheet.h" />
+    <ClInclude Include="inc\SpriteSheetManager.h" />
     <ClInclude Include="inc\Timer.h" />
   </ItemGroup>
   <ItemGroup>
@@ -44,8 +48,11 @@
     <ClCompile Include="src\LevelScrollerTile.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MouseShooter.cpp" />
+    <ClCompile Include="src\SpriteEntity.cpp" />
     <ClCompile Include="src\SpriteExtent.cpp" />
+    <ClCompile Include="src\SpriteObject.cpp" />
     <ClCompile Include="src\SpriteSheet.cpp" />
+    <ClCompile Include="src\SpriteSheetManager.cpp" />
     <ClCompile Include="src\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
