@@ -20,6 +20,13 @@ namespace gauntcraft {
 
 		anchor.x = pt.get<CORE_INT>("entity.anchor.x");
 		anchor.y = pt.get<CORE_INT>("entity.anchor.y");
+		BOOST_FOREACH(boost::property_tree::ptree::value_type &v, pt.get_child("entity.components")) {
+			LOG(INFO) << "Found component info :( " << v.second.get<std::string>("name") << ")";
+		}
+		BOOST_FOREACH(boost::property_tree::ptree::value_type &v, pt.get_child("entity.sprites")) {
+			LOG(INFO) << "Found sprite info :( " << v.second.get<std::string>("sheet") <<
+				":" << v.second.get<std::string>("frame")<< ")";
+		}
 
 		LOG(INFO) << "Loaded entity with anchors ("<<
 			anchor.x<<","<<

@@ -78,6 +78,7 @@ namespace gauntcraft {
 		}
 
 		SpriteEntity * tempSprite = new SpriteEntity(this, "character");
+		delete tempSprite;
 
 
 		player = new Character(spriteManager->getSheet("character2.png"), "alex");

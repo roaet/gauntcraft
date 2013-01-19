@@ -4,7 +4,7 @@ namespace gauntcraft {
 	Character::Character(SpriteSheet * sheet, std::string spriteFrame) {
 		this->sheet = sheet;
 		this->spriteFrame = spriteFrame;
-		speed = 200;
+		speed = 179;
 		x = y = xVel = yVel = 0;
 		spriteDirection = 0;
 		north.velocity = south.velocity = east.velocity = west.velocity = 0;

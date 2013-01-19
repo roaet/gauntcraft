@@ -1,3 +1,19 @@
-{ "entity" :
-	{ "anchor" : { "x" : 0, "y" : 0 } }
+{ "entity" : 
+	{ 
+		"anchor" : { "x" : 0, "y" : 0 },
+		"components":
+			[
+				{
+					"name": "primary"
+				}
+			],
+		"sprites" :
+			[
+				{
+					"component" : "primary",
+					"sheet": "character2.png",
+					"frame": "alex"
+				}
+			]
+	}
 }
