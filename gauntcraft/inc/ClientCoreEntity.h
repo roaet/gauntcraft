@@ -20,7 +20,6 @@ namespace gauntcraftcore {
 	public:
 		ClientCoreEntity();
 		virtual ~ClientCoreEntity();
-		virtual void handleInput(SDL_Event *);
 		virtual void move(CORE_UINT32 deltaTicks);
 		virtual void moveTo(CORE_INT newX, CORE_INT newY);
 		virtual void show(SDL_Surface *)=0;

@@ -4,7 +4,11 @@
 #include <string>
 
 #include "ClientCore.h"
+#include "GauntcraftCore.h"
 #include "ClientCoreEntity.h"
+#include "InputStack.h"
+#include "IKeyboardTarget.h"
+#include "KeyboardHandler.h"
 #include "SDL.h"
 #include "SpriteSheet.h"
 #include "Timer.h"
@@ -12,11 +16,13 @@
 typedef struct {
 	CORE_INT velocity;
 	CORE_BOOL toggle;
+	CORE_BOOL activated;
 	CORE_BOOL modified;
 	CORE_INT modFactor;
 } CharMoveStatus;
+
 namespace gauntcraft {
-	class Character : public gauntcraftcore::ClientCoreEntity {
+	class Character : public gauntcraftcore::ClientCoreEntity, public IKeyboardTarget {
 	private:
 		void handleMovement();
 
@@ -31,6 +37,9 @@ namespace gauntcraft {
 		CharMoveStatus north, south, east, west;
 		CORE_BOOL boost_toggle;
 		CORE_BOOL boosted;
+		InputStack * inputStack;
+
+		CORE_VOID selectSpriteDirection();
 
 	public:
 		Character(gauntcraft::SpriteSheet *, std::string);
@@ -40,8 +49,9 @@ namespace gauntcraft {
 		using ClientCoreEntity::getX;
 		using ClientCoreEntity::getY;
 		virtual void moveTo(CORE_INT newX, CORE_INT newY);
-		virtual void handleInput(SDL_Event *);
 		virtual void show(SDL_Surface *);
+
+		virtual CORE_BOOL targetScan(KeyboardHandler * keys);
 	};
 }
 #endif //class_sdlgauntcraft_character

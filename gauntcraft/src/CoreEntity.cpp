@@ -8,10 +8,6 @@ namespace gauntcraftcore {
 
 	}
 
-	void ClientCoreEntity::handleInput(SDL_Event * event) {
-
-	}
-
 	void ClientCoreEntity::moveTo(CORE_INT newX, CORE_INT newY) {
 		x = newX;
 		y = newY;

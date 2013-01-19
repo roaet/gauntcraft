@@ -7,7 +7,7 @@ namespace gauntcraft {
 		lastMouseX = lastMouseY = INVALID_MOUSE;
 		hShift = vShift = 0;
 		columnsToRefresh = rowsToRefresh = 0;
-		updateRequired = RESET;
+		updateRequired = LS_RESET;
 	}
 
 	LevelScroller::~LevelScroller() {
@@ -18,6 +18,7 @@ namespace gauntcraft {
 	void LevelScroller::generateScrollerTiles() {
 		hTilesNeeded = visibleExtents.w / tileSize + 2 * LOADING_PADDING;
 		vTilesNeeded = visibleExtents.h / tileSize + 2 * LOADING_PADDING;
+		
 
 		scrollerMap.resize(vTilesNeeded);
 		for(CORE_INT i = 0; i < vTilesNeeded; i++)
@@ -26,13 +27,22 @@ namespace gauntcraft {
 		for(CORE_INT i = 0; i < vTilesNeeded; i++) {
 			for(CORE_INT j = 0; j < hTilesNeeded; j++) {
 	#if SCROLLERDEBUG == 1
-					scrollerMap[i][j].setAge(rand() % 3 + 1);
+					scrollerMap[i][j].setAge(rand() % 100 + 1);
 	#else
 					scrollerMap[i][j].setAge(rand() % 50 + 1);
 	#endif
 				scrollerMap[i][j].setX(j*tileSize);
 				scrollerMap[i][j].setY(i*tileSize);
 			}
+		}
+	}
+
+	void LevelScroller::displayScrollerEntities(SDL_Surface * dest) {
+		while(!mapEntities.empty()) {
+			LevelScrollerEntity * ent = mapEntities.front();
+			entitySheet->blitSprite("trunk",ent->getX(), ent->getY(), dest); 
+			entitySheet2->blitSprite("treetop",ent->getX(), ent->getY()-50, dest);
+			mapEntities.pop_front();
 		}
 	}
 
@@ -58,26 +68,26 @@ namespace gauntcraft {
 					}
 				}
 	#if SCROLLERDEBUG == 1
-				switch(tile.age) {
-				case 1:
+				if(tile.getAge() != 0 && tile.getAge() < 10) {
 					boxRGBA(dest, xPos, yPos, 
 							xPos + tileSize,
 							yPos + tileSize,
 							125, 255, 125, 255);
-					break;
-				case 2:
+					LevelScrollerEntity * tree = new LevelScrollerEntity();
+					tree->setX(xPos - (entitySheet->getSpriteDimensions("trunk").w/2) + (tileSize/2));
+					tree->setY(yPos - (entitySheet->getSpriteDimensions("trunk").h/2) + (tileSize/2));
+					mapEntities.push_back(tree);
+				} else if(tile.getAge() != 0 && tile.getAge() < 20) {
 					boxRGBA(dest, xPos, yPos, 
 							xPos + tileSize,
 							yPos + tileSize,
 							255, 125, 125, 255);
-					break;
-				case 3:
+				} else if(tile.getAge() != 0) {
 					boxRGBA(dest, xPos, yPos, 
 							xPos + tileSize,
 							yPos + tileSize,
 							125, 125, 255, 255);
-					break;
-				default:
+				} else {
 					boxRGBA(dest, xPos, yPos, 
 							xPos + tileSize,
 							yPos + tileSize,
@@ -91,13 +101,17 @@ namespace gauntcraft {
 				levelSheet->blitSprite("dirt", xPos, yPos,  dest);
 				if(tile.getAge() == 1) {
 					levelSheet->blitSprite("blastdirt", xPos, yPos, dest);
+					LevelScrollerEntity * tree = new LevelScrollerEntity();
+					tree->setX(xPos - (entitySheet->getSpriteDimensions("trunk").w/2) + (tileSize/2));
+					tree->setY(yPos - (entitySheet->getSpriteDimensions("trunk").h/2) + (tileSize/2));
+					mapEntities.push_back(tree);
 				} else if(tile.getAge() < 5) {
 					levelSheet->blitSprite("darkdirt", xPos, yPos, dest);
 				}
 				rectangleRGBA(dest, xPos, yPos, 
 							  xPos + tileSize,
 							  yPos + tileSize,
-							  0, 0, 0, 50);
+							  0, 0, 0, 25);
 	#endif
 
 			}
@@ -125,6 +139,10 @@ namespace gauntcraft {
 		return true;
 	}
 
+	void LevelScroller::updateScrollerEntities() {
+
+	}
+
 	void LevelScroller::updateScrollerTiles(CORE_BITMASK directionalBitmask) {
 
 		// Flag all current tiles to be not old
@@ -132,14 +150,14 @@ namespace gauntcraft {
 			for(CORE_INT j = 0; j < hTilesNeeded; j++) {
 				if(scrollerMap[i][j].getAge() == 0)
 	#if SCROLLERDEBUG == 1
-					scrollerMap[i][j].setAge(rand() % 3 + 1);
+					scrollerMap[i][j].setAge(rand() % 100 + 1);
 	#else
 					scrollerMap[i][j].setAge(rand() % 50 + 1);
 	#endif
 			}
 		}
 
-		if(updateRequired & LEFT) { // need to push all tiles RIGHT and generate new ones on LEFT
+		if(updateRequired & LS_LEFT) { // need to push all tiles RIGHT and generate new ones on LEFT
 			for(CORE_INT i = 0; i < vTilesNeeded; i++) 
 				for(CORE_INT j = hTilesNeeded - 1; j > 0; j--) 
 					scrollerMap[i][j].setAge(scrollerMap[i][j-1].getAge());
@@ -148,7 +166,7 @@ namespace gauntcraft {
 				for(CORE_INT j = 0; j < columnsToRefresh; j++)
 					scrollerMap[i][j].setAge(0);
 
-		} else if(updateRequired & RIGHT) { // need to push all tiles LEFT and generate new ones on RIGHT
+		} else if(updateRequired & LS_RIGHT) { // need to push all tiles LEFT and generate new ones on RIGHT
 			for(CORE_INT i = 0; i < vTilesNeeded; i++) 
 				for(CORE_INT j = 0; j < hTilesNeeded - 1; j++)
 					scrollerMap[i][j].setAge(scrollerMap[i][j+1].getAge());
@@ -158,7 +176,7 @@ namespace gauntcraft {
 					scrollerMap[i][j].setAge(0);
 		}
 
-		if(updateRequired & TOP) { // need to push all tiles DOWN and generate new ones on TOP
+		if(updateRequired & LS_TOP) { // need to push all tiles DOWN and generate new ones on TOP
 			for(CORE_INT j = 0; j < hTilesNeeded; j++) 
 				for(CORE_INT i = vTilesNeeded - 1; i > 0; i--) 
 					scrollerMap[i][j].setAge(scrollerMap[i-1][j].getAge());
@@ -167,7 +185,7 @@ namespace gauntcraft {
 				for(CORE_INT j = 0; j < hTilesNeeded; j++) 
 					scrollerMap[i][j].setAge(0);
 
-		} else if(updateRequired & BOTTOM) { // need to push all tiles UP and generate new ones on BOTTOM
+		} else if(updateRequired & LS_BOTTOM) { // need to push all tiles UP and generate new ones on BOTTOM
 			for(CORE_INT j = 0; j < hTilesNeeded; j++)
 				for(CORE_INT i = 0; i < vTilesNeeded - 1; i++) 
 					scrollerMap[i][j].setAge(scrollerMap[i+1][j].getAge());
@@ -178,7 +196,7 @@ namespace gauntcraft {
 		}
 
 		// reset the update state
-		updateRequired = RESET;
+		updateRequired = LS_RESET;
 	}
 
 	void LevelScroller::pan(CORE_INT x, CORE_INT y) {
@@ -186,21 +204,21 @@ namespace gauntcraft {
 		vShift += y;
 
 		if(hShift > tileSize) {
-			updateRequired = updateRequired | LEFT;
+			updateRequired = updateRequired | LS_LEFT;
 			columnsToRefresh = (int)(hShift / tileSize);
 			hShift = 0;
 		} else if (hShift < -tileSize) {
-			updateRequired = updateRequired | RIGHT;
+			updateRequired = updateRequired | LS_RIGHT;
 			columnsToRefresh = (int)(hShift / -tileSize);
 			hShift = 0;
 		}
 
 		if(vShift > tileSize) {
-			updateRequired = updateRequired | TOP;
+			updateRequired = updateRequired | LS_TOP;
 			rowsToRefresh = (int)(vShift / tileSize);
 			vShift = 0;
 		} else if (vShift < -tileSize) {
-			updateRequired = updateRequired | BOTTOM;
+			updateRequired = updateRequired | LS_BOTTOM;
 			rowsToRefresh = (int)(vShift / -tileSize);
 			vShift = 0;
 		}
@@ -221,12 +239,22 @@ namespace gauntcraft {
 
 	void LevelScroller::show(SDL_Surface * dest) {
 		displayScrollerTiles(dest);
+		displayScrollerEntities(dest);
 		drawBorder(dest);
 	}
 
 
 	void LevelScroller::setSpriteSheet(SpriteSheet * sheet) {
 		this->levelSheet = sheet;
+	}
+
+
+	void LevelScroller::setEntitySpriteSheet(SpriteSheet* sheet) {
+		this->entitySheet = sheet;
+	}
+
+	void LevelScroller::setEntitySpriteSheet2(SpriteSheet* sheet) {
+		this->entitySheet2 = sheet;
 	}
 
 	void LevelScroller::setVisibleExtents(SDL_Rect extents) {

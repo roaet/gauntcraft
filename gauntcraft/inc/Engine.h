@@ -11,6 +11,8 @@
 #include "LevelScroller.h"
 #include "LevelScroller.h"
 #include "MouseShooter.h"
+#include "KeyboardHandler.h"
+#include "InputStack.h"
 
 const CORE_INT SCREEN_WIDTH = 640;
 const CORE_INT SCREEN_HEIGHT = 480;
@@ -34,10 +36,11 @@ namespace gauntcraft {
 		FILE* logfile;
 		gauntcraft::SpriteSheet* sprites;
 		gauntcraft::SpriteSheet* characterSprite;
-		Character * character;
+		Character * player;
 		gauntcraft::Timer frameDelta;
 
 		LevelScroller* level;
+		KeyboardHandler keys;
 
 		// FPS stuff
 		CORE_INT frameCount;

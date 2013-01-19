@@ -17,11 +17,15 @@
     <ClInclude Include="inc\ClientCoreTypes.h" />
     <ClInclude Include="inc\ClientCoreUtility.h" />
     <ClInclude Include="inc\Engine.h" />
+    <ClInclude Include="inc\IKeyboardTarget.h" />
     <ClInclude Include="inc\ILevelScroller.h" />
     <ClInclude Include="inc\ILevelTileGenerator.h" />
     <ClInclude Include="inc\IMouseTarget.h" />
+    <ClInclude Include="inc\InputStack.h" />
     <ClInclude Include="inc\ISDLImageLoader.h" />
+    <ClInclude Include="inc\KeyboardHandler.h" />
     <ClInclude Include="inc\LevelScroller.h" />
+    <ClInclude Include="inc\LevelScrollerEntity.h" />
     <ClInclude Include="inc\LevelScrollerTile.h" />
     <ClInclude Include="inc\MouseShooter.h" />
     <ClInclude Include="inc\SpriteExtent.h" />
@@ -33,7 +37,10 @@
     <ClCompile Include="src\CoreEntity.cpp" />
     <ClCompile Include="src\CoreUtility.cpp" />
     <ClCompile Include="src\Engine.cpp" />
+    <ClCompile Include="src\InputStack.cpp" />
+    <ClCompile Include="src\KeyboardHandler.cpp" />
     <ClCompile Include="src\LevelScroller.cpp" />
+    <ClCompile Include="src\LevelScrollerEntity.cpp" />
     <ClCompile Include="src\LevelScrollerTile.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MouseShooter.cpp" />

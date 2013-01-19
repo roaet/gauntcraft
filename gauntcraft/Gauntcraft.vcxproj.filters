@@ -84,6 +84,18 @@
     <ClInclude Include="inc\MouseShooter.h">
       <Filter>Header Files\engine</Filter>
     </ClInclude>
+    <ClInclude Include="inc\InputStack.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\KeyboardHandler.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\IKeyboardTarget.h">
+      <Filter>Header Files\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\LevelScrollerEntity.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine.cpp">
@@ -117,6 +129,15 @@
       <Filter>Source Files\engine</Filter>
     </ClCompile>
     <ClCompile Include="src\MouseShooter.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InputStack.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KeyboardHandler.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LevelScrollerEntity.cpp">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
   </ItemGroup>

@@ -9,7 +9,7 @@ namespace gauntcraft {
 		screenBpp = SCREEN_BPP;
 		windowCaption = "Generic Title";
 		running = false;
-		character = NULL;
+		player = NULL;
 		level = NULL;
 		sprites = NULL;
 		frameCount = 0;
@@ -17,7 +17,7 @@ namespace gauntcraft {
 
 	Engine::~Engine(void) {
 		gauntcraftcore::GauntcraftCoreUtility::clearPtr(sprites);
-		gauntcraftcore::GauntcraftCoreUtility::clearPtr(character);
+		gauntcraftcore::GauntcraftCoreUtility::clearPtr(player);
 		gauntcraftcore::GauntcraftCoreUtility::clearPtr(level);
 		gauntcraftcore::GauntcraftCoreUtility::clearPtr(characterSprite);
 		SDL_Quit();
@@ -35,7 +35,9 @@ namespace gauntcraft {
 	void Engine::updateFPSCaption(void) {
 		if(update.get_ticks() > 1000) {
 			CORE_FLOAT fpsCalc = frameCount / ( fps.get_ticks() / 1000.f );
-			fprintf(logfile, "FPS: %05.2f\n", fpsCalc);
+			char buffer[255];
+			sprintf(buffer,"%s (%f FPS)", windowCaption.c_str(), fpsCalc);
+			SDL_WM_SetCaption(buffer, NULL);
 			update.start();
 		}
 	}
@@ -43,20 +45,20 @@ namespace gauntcraft {
 	CORE_STATUS Engine::init_SDL(void) {
 		CORELOG("Initializing SDL")
 		if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
-			fprintf(logfile, "Error initializing SDL");
+			LOG(FATAL) << "Error initializing SDL";
 			return CORE_ERR;
 		}
 
 		screen = SDL_SetVideoMode(screenWidth, screenHeight, screenBpp, SDL_HWSURFACE);
 		if(!screen) {
-			fprintf(logfile, "Error initializing screen");
+			LOG(FATAL) << "Error initializing screen";
 			return CORE_ERR;
 		}
 
 		CORE_INT flags = IMG_INIT_JPG | IMG_INIT_PNG;
 		CORE_INT initted = IMG_Init(flags);
 		if( (initted & flags) != flags) {
-			fprintf(logfile, "Could not init SDL_Image");
+			LOG(FATAL) << "Error initializing SDL_Image";
 			return CORE_ERR;
 		}
 
@@ -68,16 +70,18 @@ namespace gauntcraft {
 
 	CORE_STATUS Engine::init(void) {
 		if(gauntcraftcore::GauntcraftCoreUtility::failed(init_SDL())) {
-			fprintf(logfile, "Error initializing SDL");
+			LOG(FATAL) << "Error during SDL initialization";
 			return CORE_ERR;
 		}
 
-		sprites = new SpriteSheet(this, "assets/sprites/dirt.png");
+		sprites = new SpriteSheet(this, "assets/sprites/grass.png");
 		characterSprite = new SpriteSheet(this, "assets/sprites/character2.png");
 
-		character = new Character(characterSprite, "alex");
+		player = new Character(characterSprite, "alex");
 
 		level = new LevelScroller(sprites);
+		level->setEntitySpriteSheet(new SpriteSheet(this, "assets/sprites/trunk.png"));
+		level->setEntitySpriteSheet2(new SpriteSheet(this, "assets/sprites/treetop.png"));
 		mouseShooter.registerTarget(level);
 
 	#if SCROLLERDEBUG == 1
@@ -88,7 +92,7 @@ namespace gauntcraft {
 			level->setVisibleExtents(extents);
 	#endif
 
-		character->moveTo(centerX, centerY);
+		player->moveTo(centerX, centerY);
 	
 		running = true;
 		return CORE_SUCCESS;
@@ -96,29 +100,25 @@ namespace gauntcraft {
 
 	CORE_STATUS Engine::doEvents(void) {
 		SDL_Event event;
+		SDL_PumpEvents();
+		keys.getKeyState();
+		if(keys.key_pressed(SDLK_ESCAPE)) {
+			running = false;
+		}
+		player->targetScan(&keys);
 		while(SDL_PollEvent(&event)) {
-			if(event.type == SDL_QUIT) {
-				running = false; 
-			}
-			if(event.type == SDL_KEYDOWN) {
-				switch(event.key.keysym.sym) {
-				case SDLK_ESCAPE:
-					running = false;
-					break;
-				}
-			}
-			character->handleInput(&event);
+			//player->handleInput(&event);
 			mouseShooter.shootMouse(&event);
 		}
 		return CORE_SUCCESS;
 	}
 
 	CORE_STATUS Engine::doPreframe(void) {
-		CORE_INT preCharX = character->getX();
-		CORE_INT preCharY = character->getY();
-		character->move(frameDelta.get_ticks());
-		CORE_INT charDiffX = character->getX() - preCharX;
-		CORE_INT charDiffY = character->getY() - preCharY;
+		CORE_INT preCharX = player->getX();
+		CORE_INT preCharY = player->getY();
+		player->move(frameDelta.get_ticks());
+		CORE_INT charDiffX = player->getX() - preCharX;
+		CORE_INT charDiffY = player->getY() - preCharY;
 		if(level && (charDiffX != 0 || charDiffY != 0))
 			level->pan(-charDiffX, -charDiffY);
 	
@@ -132,10 +132,10 @@ namespace gauntcraft {
 		SDL_FillRect(screen, NULL, SDL_MapRGB(format, 255, 255, 255));
 	
 		if(level) level->show(screen);
-		if(character) character->show(screen);
+		if(player) player->show(screen);
 
 		if(SDL_Flip(screen) == -1) {
-			fprintf(logfile, "Error flipping screen");
+			LOG(FATAL) << "Error flipping screen";
 			return CORE_ERR;
 		}
 		return CORE_SUCCESS;
@@ -145,7 +145,7 @@ namespace gauntcraft {
 		frameDelta.start();
 
 		if(SDL_Flip(screen) < 0) {
-			fprintf(logfile, "Error flipping screen");
+			LOG(FATAL) << "Error flipping screen";
 			return CORE_ERR;
 		}
 		update.start();
@@ -176,7 +176,7 @@ namespace gauntcraft {
 
 			SDL_FreeSurface(loadedImage);
 		} else {
-			fprintf(logfile, "Error loading image %s", filename.c_str());
+			LOG(FATAL) << "Error loading image " << filename;
 		}
 		return optimizedImage;
 	}

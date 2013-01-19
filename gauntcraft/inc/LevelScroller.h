@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include <string>
+#include <list>
 #include <vector>
 
 #include "ClientCore.h"
@@ -11,6 +12,7 @@
 #include "SpriteSheet.h"
 #include "Timer.h"
 #include "LevelScrollerTile.h"
+#include "LevelScrollerEntity.h"
 
 typedef struct {
 	CORE_INT age;
@@ -18,17 +20,18 @@ typedef struct {
 	CORE_INT y;
 } ScrollerTile;
 
-#define RESET 0
-#define LEFT 1
-#define RIGHT 2
-#define TOP 4
-#define BOTTOM 8
+#define LS_RESET 0
+#define LS_LEFT 1
+#define LS_RIGHT 2
+#define LS_TOP 4
+#define LS_BOTTOM 8
 
 #define SCROLLERDEBUG 0
 
 #define INVALID_MOUSE -1
 
-#define LOADING_PADDING 2
+#define LOADING_PADDING 5
+#define MAX_ENTITIES 1024
 namespace gauntcraft {
 	class LevelScroller : public ILevelScroller, public IMouseTarget{
 	private:
@@ -36,6 +39,8 @@ namespace gauntcraft {
 		void generateScrollerTiles();
 		void displayScrollerTiles(SDL_Surface *);
 		void updateScrollerTiles(CORE_BITMASK directionalBitmask);
+		void updateScrollerEntities();
+		void displayScrollerEntities(SDL_Surface *);
 
 		/* /// DEBUG TEST FUNCTIONS */
 		/* /// */
@@ -48,6 +53,9 @@ namespace gauntcraft {
 
 		// Variables for scrolling method
 		std::vector < std::vector <gauntcraft::LevelScrollerTile> > scrollerMap;
+		std::list < gauntcraft::LevelScrollerEntity * > mapEntities;
+		gauntcraft::SpriteSheet * entitySheet;
+		gauntcraft::SpriteSheet * entitySheet2;
 		CORE_INT columnsToRefresh, rowsToRefresh;
 		CORE_INT hShift, vShift;
 		CORE_BITMASK updateRequired;
@@ -62,6 +70,8 @@ namespace gauntcraft {
 		virtual CORE_BOOL targetHit(SDL_Event * event);
 
 		void setSpriteSheet(gauntcraft::SpriteSheet *);
+		void setEntitySpriteSheet(gauntcraft::SpriteSheet *);
+		void setEntitySpriteSheet2(gauntcraft::SpriteSheet *);
 
 		virtual void pan(CORE_INT x, CORE_INT y);
 		virtual void show(SDL_Surface *);
