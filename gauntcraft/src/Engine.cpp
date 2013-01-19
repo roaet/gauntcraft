@@ -52,7 +52,7 @@ namespace gauntcraft {
 			return CORE_ERR;
 		}
 
-		screen = SDL_SetVideoMode(screenWidth, screenHeight, screenBpp, SDL_HWSURFACE);
+		screen = SDL_SetVideoMode(screenWidth, screenHeight, screenBpp, SDL_SWSURFACE);
 		if(!screen) {
 			LOG(FATAL) << "Error initializing screen";
 			return CORE_ERR;
