@@ -4,7 +4,7 @@ A gauntlet styled minecraft inspired game. Currently it is using SDL but there i
 chance it will move to OpenGL. It is programmed in C++.
 
 <h2>Current Status</h2>
-<img src="http://roaet.com/images/gauntcraft_001.png"/>
+<img src="http://roaet.com/images/gauntcraft_002.png"/>
 <ul>
   <li>Basic tile engine with 'infinite scrolling' support.</li>
   <li>Some helpful core features</li>
